@@ -1,0 +1,12 @@
+.mainContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: column;
+  align-items: center;
+}
+.mainContainer input {
+  max-width: 30em;
+  min-width: 70%;
+  margin: 0.2em;
+  border-radius: 7px;
+}
