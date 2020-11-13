@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { authActionRegister, clearAuth } from '../../actions/actionCreator';
 import { Redirect } from 'react-router-dom';
 import styles from './RegistrationForm.module.sass';
+
 import { Field, reduxForm } from 'redux-form';
 import FormInput from '../FormInput/FormInput';
 import RoleInput from '../RoleInput/RoleInput';
@@ -12,6 +13,7 @@ import AgreeTermOfServiceInput
 import CONSTANTS from '../../constants';
 import customValidator from '../../validators/validator';
 import Schems from '../../validators/validationSchems';
+import { Link } from 'react-router-dom';
 
 class RegistrationForm extends React.Component{
 
@@ -129,6 +131,7 @@ class RegistrationForm extends React.Component{
             <span className={ styles.inscription }>Create Account</span>
           </button>
         </form>
+        <Link className={styles.button} to="/ResetPassword"> Forgot Password? </Link>
       </div>
     );
   }

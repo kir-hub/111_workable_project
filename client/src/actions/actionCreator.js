@@ -1,5 +1,18 @@
 import ACTION from './actionTypes';
 
+export const authActionResetPass = (data) => {
+    return{
+        type: ACTION.AUTH_ACTION_RESET_PASS,
+        data: data
+    } 
+};
+
+export const clearErrorResetPass = () => {
+    return {
+        type: ACTION.AUTH_ACTION_CLEAR_ERROR
+    }
+};
+
 
 export const authActionLogin = (data) => {
     return {
