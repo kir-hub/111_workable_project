@@ -4,10 +4,10 @@ import styles from '../Header.module.sass';
 
 export default function NamesForSale() {
     return (
-        <li>
+        <li className={styles.menu_list}>
                                     <span>Names For Sale</span>
                                     <img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`} alt='menu'/>
-                                    <ul>
+                                    <ul className={styles.menu_drop}>
                                         <li className={styles.first}><a href="http://www.google.com">POPULAR NAMES</a></li>
                                         <li><a href="http://www.google.com">SHORT NAMES</a></li>
                                         <li><a href="http://www.google.com">INTRIGUING NAMES</a></li>

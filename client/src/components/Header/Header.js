@@ -16,6 +16,13 @@ import NamesForSale from './ulsForHeader/NamesForSale';
 import Blog from './ulsForHeader/blog';
 
 class Header extends React.Component {
+  constructor(props){
+    super(props);
+    this.state= {
+      menuActive: false,
+    }
+  }
+
   componentDidMount() {
     if (!this.props.data) {
       this.props.getUser();
@@ -27,6 +34,12 @@ class Header extends React.Component {
     this.props.clearUserStore();
     this.props.history.replace('/login');
   };
+
+  setMenuActive = () =>{  
+    this.setState({
+      menuActive: !this.state.menuActive
+    })
+  }
 
   startContests = () => {
     this.props.history.push('/startContest');
@@ -127,8 +140,16 @@ class Header extends React.Component {
         <div className={styles.navContainer}>
           <LinkLogo className={styles.logo} alt="blue_logo" />
           <div className={styles.leftNav}>
-            <div className={styles.nav}>
-              <ul>
+
+
+            <div className={styles.hamburger} onClick={() => this.setMenuActive()}>
+              <span className={styles.bar}></span>
+              <span className={styles.bar}></span>
+              <span className={styles.bar}></span>
+            </div>
+
+            <div className={this.state.menuActive ? styles.nav : styles.active} >
+              <ul className={styles.menu}>
                 <NameIdeas /> {/*разбил на компоненты */}
                 <Constests />
                 <OurWork />

@@ -4,10 +4,10 @@ import styles from '../Header.module.sass';
 
 export default function OurWork() {
     return (
-        <li>
+        <li className={styles.menu_list}>
                                     <span>Our Work</span><img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                                                               alt='menu'/>
-                                    <ul>
+                                    <ul className={styles.menu_drop}>
                                         <li className={styles.first}><a href="http://www.google.com">NAMES</a></li>
                                         <li><a href="http://www.google.com">TAGLINES</a></li>
                                         <li><a href="http://www.google.com">LOGOS</a></li>

@@ -4,10 +4,10 @@ import styles from '../Header.module.sass';
 
 export default function Constests() {
     return (
-        <li>
+        <li className={styles.menu_list}>
                                     <span>Contests</span><img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                                                               alt='menu'/>
-                                    <ul>
+                                    <ul className={styles.menu_drop}>
                                         <li className={styles.first}><a href="http://www.google.com">How it works</a></li>
                                         <li><a href="http://www.google.com">Pricing</a></li>
                                         <li><a href="http://www.google.com">Agency service</a></li>

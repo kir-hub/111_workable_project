@@ -14,6 +14,18 @@ const userQueries = require('./queries/userQueries');
 const bankQueries = require('./queries/bankQueries');
 const ratingQueries = require('./queries/ratingQueries');
 
+//---------------------------------------------------------------------------------
+module.exports.resetPass = async (req, res, next) => {
+  try{
+    const updateUserPass = await userQueries.updateUser(req.body, req.tokenData.userId)
+  }catch {
+
+  }
+}
+
+
+//----------------------------------------------------------------------------------
+
 module.exports.login = async (req, res, next) => {
   try {
     const foundUser = await userQueries.findUser({ email: req.body.email });

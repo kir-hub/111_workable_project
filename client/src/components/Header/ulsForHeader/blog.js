@@ -4,10 +4,10 @@ import styles from '../Header.module.sass';
 
 export default function Blog() {
     return (
-        <li>
+        <li className={styles.menu_list}>
                                     <span>Blog</span><img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                                                           alt='menu'/>
-                                    <ul>
+                                    <ul className={styles.menu_drop}>
                                         <li className={styles.first}><a href="http://www.google.com">Ultimate naming guide</a></li>
                                         <li><a href="http://www.google.com">POETIC DEVICES IN BUSINESS NAMING</a></li>
                                         <li><a href="http://www.google.com">CROWDED BAR THEORY</a></li>

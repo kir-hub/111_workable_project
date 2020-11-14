@@ -5,10 +5,10 @@ import CONSTANTS, {PHONE_NUMBER} from '../../../constants';
 export default function NameIdeas() {
     return (
         
-             <li>
+                                <li className={styles.menu_list}> 
                                     <span>NAME IDEAS</span><img src={`${CONSTANTS.STATIC_IMAGES_PATH}menu-down.png`}
                                                                 alt='menu'/>
-                                    <ul>
+                                    <ul className={styles.menu_drop}>
                                         <li className={styles.first}><a href="http://www.google.com">Beauty</a></li>
                                         <li><a href="http://www.google.com">Consulting</a></li>
                                         <li><a href="http://www.google.com">E-Commerce</a></li>
