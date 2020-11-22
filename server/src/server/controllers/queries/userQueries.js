@@ -2,6 +2,7 @@ const bd = require('../../models/index');
 const NotFound = require('../../errors/UserNotFoundError');
 const ServerError = require('../../errors/ServerError');
 const bcrypt = require('bcrypt');
+const { db } = require('../../models/mongoModels/Message');
 
 module.exports.updateUser = async (data, userId, transaction) => {
   const [updatedCount, [updatedUser]] = await bd.Users.update(data,
@@ -21,6 +22,21 @@ module.exports.findUser = async (predicate, transaction) => {
   }
 };
 
+// module.exports.userResetPass = async (data, userId) =>{
+//   const [updatedPass, updatedRows] = await bd.Users.update(data, { //переделать
+//     where: {id: userId}, returning: true
+//   })
+//   if(updatedPass !== 1) {
+//     throw new ServerError(' cannot rest password')
+//   }
+//   return updatedRows,dataValues;
+
+
+//   // const newPass = await bd.Users.findByPk({
+//   //   where: req
+//   // })
+// };
+
 module.exports.userCreation = async (data) => {
   const newUser = await bd.Users.create(data);
   if ( !newUser) {
@@ -36,6 +52,3 @@ module.exports.passwordCompare = async (pass1, pass2) => {
     throw new NotFound('Wrong password');
   }
 };
-
-//-------------------------------------------------------------
-// module.exports.resetPassword = async

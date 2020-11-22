@@ -17,6 +17,14 @@ router.post(
 );
 
 router.post(
+  '/resetPassword',
+  validators.validateResetPasswordData,
+  hashPass,
+  userController.resetPassword,
+);
+
+
+router.post(
   '/login',
   validators.validateLogin,
   userController.login,

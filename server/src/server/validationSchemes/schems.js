@@ -9,6 +9,12 @@ module.exports.registrationSchem = yup.object().shape({
   role: yup.string().matches(/(customer|creator)/).required(),
 });
 
+module.exports.resetPasswordSchem = yup.object().shape({
+  
+  password: yup.string().required().min(1),
+});
+
+
 module.exports.loginSchem = yup.object().shape({
   email: yup.string().email().required().min(4),
   password: yup.string().required().min(1),

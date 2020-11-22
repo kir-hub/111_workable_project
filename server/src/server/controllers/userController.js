@@ -14,17 +14,39 @@ const userQueries = require('./queries/userQueries');
 const bankQueries = require('./queries/bankQueries');
 const ratingQueries = require('./queries/ratingQueries');
 
-//---------------------------------------------------------------------------------
-module.exports.resetPass = async (req, res, next) => {
+module.exports.resetPassword = async (req, res, next) => { 
   try{
-    const updateUserPass = await userQueries.updateUser(req.body, req.tokenData.userId)
-  }catch {
+    const userResPass = await userQueries.findUser({email: req.body.email}) //почему бд, это из модели? зачем нам юзеркваери
+    // const userResPass = await bd.findOne({email: req.body.email}) //почему бд, это из модели? зачем нам юзеркваери
+     Object.assign(req.body, { password: req.hashPass });
 
+    const accessToken = jwt.sign({
+      
+      //userId: userResPass.id,s
+      
+      password: userResPass.req.hashPass,
+      
+      //email: userResPass.email,
+     
+    }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME});
+    //await userQueries.updateUser({ accessToken}, foundUser.id); // проверка ЗАЛОГИНЕН ЛИ
+    res.send({token: accessToken});
+
+
+    //отправить токен на почту. отправляя токен мне надо его где то расшифровать.
+  }catch (err){
+    next (err)
   }
 }
 
-
-//----------------------------------------------------------------------------------
+module.exports.decodeToken = async (req, res, next) =>{
+  try{
+    const newPassword = await bd.findOne({email: req.body.email})
+    const decodedToken = jwt.verify(tokenFromMail)
+  }catch (e){
+    next (e)
+  }
+}
 
 module.exports.login = async (req, res, next) => {
   try {
@@ -43,10 +65,12 @@ module.exports.login = async (req, res, next) => {
     }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME });
     await userQueries.updateUser({ accessToken }, foundUser.id);
     res.send({ token: accessToken });
+
   } catch (err) {
     next(err);
   }
 };
+
 module.exports.registration = async (req, res, next) => {
   try {
     const newUser = await userQueries.userCreation(
@@ -223,3 +247,31 @@ module.exports.cashout = async (req, res, next) => {
 };
 
 
+
+// module.exports.resetPassword = async (req, res, next) => { //ЧТО ЭТО ВООБЩЕ ТАКОЕ ??????????????????????
+//   try{
+//     const userResPass = await userQueries.userResetPass(
+//       Object.assign(req.body, {password: req.hashPass}))
+//     await userQueries.passwordCompare(req.body.password, userResPass.password);
+
+//     const accessToken = jwt.sign({
+//       firstName: userResPass.firstName,
+//       userId: userResPass.id,
+//       role: userResPass.role,
+//       lastName: userResPass.lastName,
+//       avatar: userResPass.avatar,
+//       displayName: userResPass.displayName,
+//       balance: userResPass.balance,
+//       email: userResPass.email,
+//       rating: userResPass.rating,
+//     }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME});
+//     await userQueries.updateUser({ accessToken}, foundUser.id);
+//     res.send({token: accessToken});
+
+
+
+//     //отправить токен на почту
+//   }catch (err){
+//     next (err)
+//   }
+// }

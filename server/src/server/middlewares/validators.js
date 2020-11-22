@@ -11,6 +11,16 @@ module.exports.validateRegistrationData = async (req, res, next) => {
   }
 };
 
+module.exports.validateResetPasswordData = async (req, res, next) =>{ //-------------------------------------------
+  const validationResult = await schems.resetPasswordSchem.isValid(req.body);
+  if(!validationResult){
+    return next(new BadRequestError('password not correct'));
+    }else{
+      next();
+    }
+};
+
+
 module.exports.validateLogin = async (req, res, next) => {
   const validationResult = await schems.loginSchem.isValid(req.body);
   if (validationResult) {
