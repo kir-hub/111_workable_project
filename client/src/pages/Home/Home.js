@@ -31,7 +31,7 @@ const Home = (props) => {
     const text = CONSTANTS.HEADER_ANIMATION_TEXT[index % CONSTANTS.HEADER_ANIMATION_TEXT.length];
     return (
         <>
-            <Header/>
+            <Header />
             {isFetching ? <Spinner/> : (<>
                 <div className={styles.container}>
                     <div className={styles.headerBar}>

@@ -135,7 +135,7 @@ class CreatorDashboard extends React.Component {
         }
         return array;
     };
-
+ 
     goToExtended = (contestId) => {
         this.props.history.push('/contest/' + contestId);
     };

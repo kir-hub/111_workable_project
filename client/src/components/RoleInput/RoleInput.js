@@ -16,4 +16,4 @@ const RoleInput = ({label, id, strRole, infoRole, input, type}) => {
     )
 };
 
-export default RoleInput;
+export default RoleInput; 

@@ -4,6 +4,9 @@ const serverPort = env === 'production' ? 3000 : 9632;
 export const PHONE_NUMBER = '(877)355-3585';
 
 export default {
+  MODERATOR: 'moderator',
+
+
   CUSTOMER: 'customer',
   CREATOR: 'creator',
   CONTEST_STATUS_ACTIVE: 'active',

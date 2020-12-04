@@ -8,6 +8,7 @@ const validators = require('../middlewares/validators');
 const chatController = require('../controllers/chatController');
 const upload = require('../utils/fileUpload');
 const router = express.Router();
+const queries = require('../controllers/queries/userQueries');
 
 router.post(
   '/registration',
@@ -46,7 +47,7 @@ router.post(
   userController.payment,
 );
 
-router.get(
+router.post(
   '/getCustomersContests',
   checkToken.checkToken,
   contestController.getCustomersContests,
@@ -66,9 +67,12 @@ router.post(
   contestController.getContests,
 );
 
-router.get(
+router.post(
   '/getUser',
   checkToken.checkAuth,
+  //checkToken.checkToken
+ 
+  
 );
 
 router.get(

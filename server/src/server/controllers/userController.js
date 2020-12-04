@@ -14,30 +14,27 @@ const userQueries = require('./queries/userQueries');
 const bankQueries = require('./queries/bankQueries');
 const ratingQueries = require('./queries/ratingQueries');
 
+
 module.exports.resetPassword = async (req, res, next) => { 
   try{
     const userResPass = await userQueries.findUser({email: req.body.email}) //почему бд, это из модели? зачем нам юзеркваери
     // const userResPass = await bd.findOne({email: req.body.email}) //почему бд, это из модели? зачем нам юзеркваери
      Object.assign(req.body, { password: req.hashPass });
-
     const accessToken = jwt.sign({
-      
       //userId: userResPass.id,s
-      
       password: userResPass.req.hashPass,
-      
       //email: userResPass.email,
-     
     }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME});
     //await userQueries.updateUser({ accessToken}, foundUser.id); // проверка ЗАЛОГИНЕН ЛИ
-    res.send({token: accessToken});
-
-
+    //res.send({token: accessToken});
+    
     //отправить токен на почту. отправляя токен мне надо его где то расшифровать.
   }catch (err){
     next (err)
   }
 }
+
+
 
 module.exports.decodeToken = async (req, res, next) =>{
   try{
@@ -62,9 +59,10 @@ module.exports.login = async (req, res, next) => {
       balance: foundUser.balance,
       email: foundUser.email,
       rating: foundUser.rating,
+      password: foundUser.password //раскодировать пароль
     }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME });
     await userQueries.updateUser({ accessToken }, foundUser.id);
-    res.send({ token: accessToken });
+    res.send/*debug*/({ token: accessToken });
 
   } catch (err) {
     next(err);
@@ -150,12 +148,14 @@ module.exports.payment = async (req, res, next) => {
     transaction = await bd.sequelize.transaction();
     await bankQueries.updateBankBalance({
         balance: bd.sequelize.literal(`
+        
                 CASE
             WHEN "cardNumber"='${ req.body.number.replace(/ /g,
           '') }' AND "cvc"='${ req.body.cvc }' AND "expiry"='${ req.body.expiry }'
                 THEN "balance"-${ req.body.price }
             WHEN "cardNumber"='${ CONSTANTS.SQUADHELP_BANK_NUMBER }' AND "cvc"='${ CONSTANTS.SQUADHELP_BANK_CVC }' AND "expiry"='${ CONSTANTS.SQUADHELP_BANK_EXPIRY }'
                 THEN "balance"+${ req.body.price } END
+                
         `),
       },
       {

@@ -32,7 +32,7 @@ class RegistrationForm extends React.Component{
     });
   };
 
-  render () {
+  render () { 
     const {handleSubmit, submitting, auth, authClear} = this.props;
     const {error} = auth;
     const formInputClasses = {
@@ -104,6 +104,7 @@ class RegistrationForm extends React.Component{
             />
           </div>
           <div className={ styles.choseRoleContainer }>
+
             <Field name='role' type='radio' value={ CONSTANTS.CUSTOMER }
                    strRole='Join As a Buyer'
                    infoRole='I am looking for a Name, Logo or Tagline for my business, brand or product.'
@@ -113,6 +114,7 @@ class RegistrationForm extends React.Component{
                    infoRole='I plan to submit name ideas, Logo designs or sell names in Domain Marketplace.'
                    component={ RoleInput } id={ CONSTANTS.CREATOR }/>
           </div>
+          
           <div className={ styles.termsOfService }>
             <Field
               name='agreeOfTerms'

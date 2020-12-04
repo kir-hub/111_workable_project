@@ -38,6 +38,8 @@ const ResetPasswordPage = (props) => {
         </div>
         <ResetPasswordForm changeRoute={ changeRoute }/>
       </div>
+
+      
       <form method='POST' action='http://localhost:3000/ResetPassword'>
         <input type='email' name='email' />
         <input type='password' name='password'/>

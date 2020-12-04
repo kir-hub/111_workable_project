@@ -22,9 +22,9 @@ class Header extends React.Component {
       menuActive: false,
     }
   }
-
+ 
   componentDidMount() {
-    if (!this.props.data) {
+    if (!this.props.data) { //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
       this.props.getUser();
     }
   }
@@ -32,7 +32,7 @@ class Header extends React.Component {
   logOut = () => {
     localStorage.clear();
     this.props.clearUserStore();
-    this.props.history.replace('/login');
+    //this.props.history.replace('/login');
   };
 
   setMenuActive = () =>{  
@@ -41,9 +41,10 @@ class Header extends React.Component {
     })
   }
 
-  startContests = () => {
-    this.props.history.push('/startContest');
-  };
+  // startContests = () => {
+  //   this.props.history.push('/startContest');
+  // };
+
   renderLoginButtons = () => {
     if (this.props.data) {
       return (
@@ -90,7 +91,10 @@ class Header extends React.Component {
                 </Link>
               </li>
               <li>
-                <span onClick={this.logOut}>Logout</span>
+              <Link to="/login" onClick={this.logOut} style={{ textDecoration: 'none' }}>
+                <span className={styles.btn}>Logout</span>
+              </Link>
+                {/* <span onClick={this.logOut}>Logout</span> */}
               </li>
             </ul>
           </div>
@@ -158,12 +162,9 @@ class Header extends React.Component {
               </ul>
             </div>
             {this.props.data && this.props.data.role !== CONSTANTS.CREATOR && (
-              <div
-                className={styles.startContestBtn}
-                onClick={this.startContests}
-              >
-                START CONTEST
-              </div>
+              <Link to='/startContest' style={{textDecoration: "none"}}><div className={styles.startContestBtn}  >
+              START CONTEST
+            </div></Link>
             )}
           </div>
         </div>

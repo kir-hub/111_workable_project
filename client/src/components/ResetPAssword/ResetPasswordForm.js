@@ -20,6 +20,7 @@ import Schems from '../../validators/validationSchems';
 
 
 
+
 class ResetPasswordForm extends React.Component{
 
   componentWillUnmount () {
@@ -53,7 +54,7 @@ class ResetPasswordForm extends React.Component{
           <div className={ styles.signUpFormContainer}>
 
 
-      <form onSubmit={ handleSubmit(this.clicked) }>
+      <form onSubmit={ handleSubmit(this.clicked) } >
       <div className={ styles.row }>
           <Field
             name='email'
@@ -71,13 +72,7 @@ class ResetPasswordForm extends React.Component{
             type='password'
             label='Password'
           />
-          <Field
-            name='confirmPassword'
-            classes={ formInputClasses }
-            component={ FormInput }
-            type='password'
-            label='Password confirmation'
-          />
+          
           </div>
           <button type='submit' disabled={ submitting }
                 className={ styles.submitContainer }>
@@ -85,6 +80,8 @@ class ResetPasswordForm extends React.Component{
         </button>
       </form>
           </div>
+
+          
       )
   
 }
