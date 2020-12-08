@@ -1,5 +1,7 @@
 import React , {useState, useRef, useEffect} from 'react'
+import Component from '../Component/Component'
 import styles from './timer.module.sass'
+import CustomerDashboard from '../CustomerDashboard/CustomerDashboard'
 
 const Timer =(props)=>{
     
@@ -8,6 +10,7 @@ const Timer =(props)=>{
     const [timerHours, setTimerHours] = useState('00')
     const [timerMinutes, setTimerMinutes] = useState('00')
     const [timerSeconds, setTimerSeconds] = useState('00')
+    const [isOver, setTimerOver] = useState(false)
 
     let interval = useRef();
 
@@ -29,6 +32,8 @@ const Timer =(props)=>{
             if(distance < 0){
                 //stop
                 clearInterval(interval.current)
+                setTimerOver(true)
+                
             }else{
                 //update
                 setTimerDays(days);
@@ -39,6 +44,8 @@ const Timer =(props)=>{
         }, 1000)
     }
 
+    
+
     useEffect(() => { 
         startsTimer();
         return ()=>{
@@ -48,7 +55,10 @@ const Timer =(props)=>{
 
     return (
         <div className={styles.parentCont}>
+            <div className={styles.displayNone}> <CustomerDashboard display={isOver}/></div>
+            
             <div className={styles.timerContainer}>
+                {/* <h1>{isOver ? 'O' : ''}</h1> */}
                 <div className={styles.title}>
                     
                     <h2> {title} </h2>

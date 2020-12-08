@@ -5,6 +5,7 @@ export const PHONE_NUMBER = '(877)355-3585';
 
 export default {
   MODERATOR: 'moderator',
+  EVENTS_STATUS_EXISTS: 'exists',
 
 
   CUSTOMER: 'customer',

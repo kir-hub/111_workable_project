@@ -27,6 +27,7 @@ import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
 class App extends Component {
     render() {
         return (
+            
             <Router history={browserHistory}>
                 <ToastContainer
                     position="top-center"
@@ -42,7 +43,7 @@ class App extends Component {
                 <Switch>
                     <Route exact path='/ResetPassword' component={(ResetPasswordPage)}/>
 
-                    <Route exact path='/Events' component={(Events)}/>
+                    <Route exact path='/Events' component={PrivateHoc(Events)}/>
                     <Route exact path='/LearnSquadHelp' component={(LearnSquadHelp)}/>
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/login' component={OnlyNotAuthorizedUserHoc(LoginPage)}/>
@@ -71,6 +72,7 @@ class App extends Component {
                 </Switch>
                 <ChatContainer/>
             </Router>
+            
         );
     }
 }

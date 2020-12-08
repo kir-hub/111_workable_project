@@ -9,8 +9,10 @@ export default function GetInTouch() {
 
 
         <div className={styles.blueCont}>
+            <div>
             <div className={styles.postMark}>
-                <i class="fa fa-paperclip" aria-hidden='tr ue'></i>
+                <i className="fa fa-paperclip" aria-hidden='tr ue'></i>
+            </div>
             </div>
             <div className={styles.afterPostMark}>
                 <h1>Questions?</h1>

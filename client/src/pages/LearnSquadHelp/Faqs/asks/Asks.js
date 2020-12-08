@@ -25,7 +25,7 @@ export default function Asks(props) {
     return (
         <>
         <div className={styles.returnDiv}>
-            <div className={styles.askDiv}><h1>?</h1> </div>  <h1>Frequently Asked Questions</h1>
+            <div><div className={styles.askDiv}><h1>?</h1></div> </div>  <h1>Frequently Asked Questions</h1>
             
             </div>
             <hr/>

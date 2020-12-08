@@ -4,7 +4,7 @@ const TokenError = require('../errors/TokenError');
 import userQueries from '../controllers/queries/userQueries';
 
 
-module.exports.checkAuth = async (req, res, next) => {
+module.exports.checkAuth = async (req, res, next) => { //это можно использовать для раскодировки токена с почты
   const accessToken = req.headers.authorization;
   if ( !accessToken) {
     return next(new TokenError('need token'));

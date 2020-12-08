@@ -7,9 +7,12 @@ import ContestBox from "../ContestBox/ContestBox";
 import styles from './CustomerDashboard.module.sass';
 import classNames from 'classnames';
 import TryAgain from '../../components/TryAgain/TryAgain';
-
+import {Link} from 'react-router-dom'
+import Component from '../Component/Component'
+import Events from '../../pages/Events/testData'
 
 class CustomerDashboard extends React.Component {
+    
 
 
     loadMore = (startFrom) => {
@@ -23,6 +26,7 @@ class CustomerDashboard extends React.Component {
 
     componentDidMount() {
         this.getContests();
+        console.log(this.props.display);
     }
 
     getContests = () => {
@@ -61,9 +65,14 @@ class CustomerDashboard extends React.Component {
         this.getContests();
     };
 
+    callback=()=>{
+
+    }
+   
     render() {
-        const {error, haveMore} = this.props;
+        const {error, haveMore, display} = this.props;
         const {customerFilter} = this.props;
+        
         return (
             <div className={styles.mainContainer}>
                 <div className={styles.filterContainer}>
@@ -85,6 +94,10 @@ class CustomerDashboard extends React.Component {
                              [styles.filter]: CONSTANTS.CONTEST_STATUS_PENDING !== customerFilter
                          })}>Inactive contests
                     </div>
+                    <Link to='/Events' className={  styles.filter }>
+                        Events 
+                        <span> {display ? 'O' : ''}  </span>
+                    </Link>
                 </div>
                 <div className={styles.contestsContainer}>
                     {
@@ -103,6 +116,10 @@ class CustomerDashboard extends React.Component {
         );
     }
 }
+
+
+
+
 
 
 const mapStateToProps = (state) => {

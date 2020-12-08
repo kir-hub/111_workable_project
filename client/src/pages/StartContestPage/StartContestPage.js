@@ -8,6 +8,7 @@ import styles from './StartContestPage.module.sass';
 import Footer from '../../components/Footer/Footer';
 import ProgressBar from '../../components/ProgressBar/ProgressBar';
 import Header from "../../components/Header/Header";
+import ButtonGroup from '../../components/ButtonGroup/ButtonGroup'
 
 
 const StartContestPage = (props) => {
@@ -81,6 +82,7 @@ const StartContestPage = (props) => {
                                describe='Establish your entire brand identity and save with this bundle.'
                                setBundle={setBundle}/>
                 </div>
+                <ButtonGroup/>
             </div>
             <Footer/>
         </div>

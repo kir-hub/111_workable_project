@@ -8,7 +8,7 @@ import { connect } from 'react-redux';
 import { clearErrorSignUpAndLogin } from '../../actions/actionCreator';
 import CONSTANTS from '../../constants';
 
-//import faq from '../../components/RegistrationForm/registrationJSON/RegistrationPage.json';
+
 import Question from '../../components/Question/Question';
 
 
@@ -36,9 +36,6 @@ const RegistrationPage = (props) => {
 
 <div className={styles.ColumnContainer}>
 
-
-  {/* {faqElements} 
-     <Question key={index} body={question.body} header={question.header}/>*/}
 
 
     <Question/> 

@@ -5,7 +5,7 @@
   flex-direction: column
   justify-content: flex-start
   width: 100%
-  position: fixed
+  position: relative
   z-index: 5000
   background-color: white
   
@@ -29,13 +29,16 @@
     .startContestBtn
       text-align: center
       max-width: 340px
+       
       padding: 10px 22px
+      
       border: 2px solid #28d2d0
       color: #28d2d0
       border-radius: 5px
       font-size: 14px
       font-weight: 400
       margin-bottom: 10px
+      
       &:hover
         color: white
         background-color: #28d2d0
@@ -43,6 +46,8 @@
       display: flex
       width: 100% 
       flex-direction: column
+      align-items: center
+      justify-content: center
       @media(max-width: 1100px)
         align-items: colunm
         justify-content: flex-end
@@ -90,7 +95,7 @@
                 transition: 0.01s all
                 display: block
                 position: absolute
-                border: 1px solid #eee
+                border: 1px solid #c0c0c034
                 z-index: 1000
                 top: -300px
                 background-color: white
@@ -121,9 +126,9 @@
                 transition: 0.4s all
                 display: block
                 position: absolute
-                border-top: 10px solid #ff000000
+                border-top: 10px solid #c2ff1900
                 z-index: 1000
-                top: 135px
+                top: 150px
                 background-color: white
                 transition: 0.4s opacity
                 opacity: 1  
@@ -397,6 +402,7 @@
   @media(max-width: 1100px )
     .hamburger
       display: flex
+      margin-top: 30px 
     
 
      
@@ -439,15 +445,17 @@
           ul
             display: block
             position: absolute
-            top: 45px
+            top: 95px
             
         ul
-          border: 1px solid #eee
+          
+          border: 1px solid #a8a8a856
+          border-top: 10px solid #e61b1b00
           z-index: 500
           padding: 5px 0
           list-style: none
           background: white
-          width: 180px
+          width: 136px
           display: none
           li
             text-align: left
@@ -504,7 +512,7 @@
     justify-content: center
     align-items: center
     width: 100%
-    position: fixed
+    position: relative
     background-color: rgb(69,90,137)
     border-bottom: 3px solid rgb(255, 255, 255)
     height: 30px

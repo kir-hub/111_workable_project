@@ -133,7 +133,6 @@ class RegistrationForm extends React.Component{
             <span className={ styles.inscription }>Create Account</span>
           </button>
         </form>
-        <Link className={styles.button} to="/ResetPassword"> Forgot Password? </Link>
       </div>
     );
   }

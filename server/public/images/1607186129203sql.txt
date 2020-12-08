@@ -1,0 +1,192 @@
+drop table order_prod cascade ;
+drop table sushi_item cascade ;
+drop table orders cascade ;
+drop table client cascade ;
+
+
+create table sushi_item
+(
+    id serial primary key ,
+    name varchar(30) not null,
+    price money not null,
+    ingr text not null,
+    weight int
+);
+
+
+insert into sushi_item ( name, price, ingr, weight)
+values
+    ( 'Bing', 7.64, 'Pepper - Sorrano', 64),
+    ('Cathy', 8.29, 'The Pop Shoppe - Black Cherry', 58),
+    ('Ulrikaumeko', 1.60, 'Star Fruit', 85),
+    ('Averil', 6.99, 'Bread - White Epi Baguette', 79),
+    ('Ebenezer', 8.28, 'Rum - Coconut, Malibu', 41),
+    ('Creigh', 1.06, 'Bread - Sticks, Thin, Plain', 100),
+    ('Gregor', 8.11, 'Chicken - White Meat, No Tender', 16),
+    ('Oliviero', 0.51, 'Gooseberry', 84),
+    ( 'Price', 1.46, 'Bamboo Shoots - Sliced', 15),
+    ('Angeline', 5.32, 'Cleaner - Pine Sol', 82);
+
+create table client
+(
+    id serial primary key ,
+    name varchar(30) not null
+);
+
+
+
+insert into client (name)
+values ('John'),
+       ('Tim'),
+       ('Barbara');
+
+create table orders
+(
+    id serial primary key ,
+    client_id int references client(id),
+    day text not null
+);
+
+insert into orders (client_id, day)
+values (1, 'monday'),
+       (2, 'tuesday'),
+       (3, 'wednesday'),
+       (1 , 'thursday'),
+       (2 , 'friday'),
+       (3, 'saturday');
+
+
+
+create table order_prod
+(
+    order_id int references orders(id) on delete cascade on update restrict not null,
+    sushi_id int references sushi_item(id) on delete cascade on update restrict not null,
+    PRIMARY KEY (order_id, sushi_id),
+    count smallint DEFAULT 1 CHECK ( count > 0 ) NOT NULL
+);
+
+
+insert into order_prod (order_id, sushi_id, count)
+values (1,1,2),
+       (2,3,1),
+       (3,5,2),
+       (4,6,1),
+       (5,7,5),
+       (6,2,10);
+
+
+
+select *
+from order_prod;
+
+
+
+select sushi_item.ingr, sushi_item.price * order_prod.count as price --состав заказа и цена на него
+from order_prod
+         join sushi_item on order_prod.sushi_id = sushi_item.id
+where order_prod.order_id = 6
+group by sushi_item.ingr, order_prod.count, price ;
+
+
+
+select * -- информация о заказах на конкретный день
+from order_prod
+         join orders on order_prod.order_id = orders.id
+where orders.day = 'monday';
+
+
+
+select sushi_item.price * order_prod.count as price -- запрос для получения заказа и выручки на конкретный день
+from order_prod
+         join orders on order_prod.order_id = orders.id
+         join sushi_item on order_prod.sushi_id = sushi_item.id
+where orders.day = 'monday'
+group by order_prod.sushi_id, price,  order_prod.count;
+
+
+
+select sushi_item.price * order_prod.count as price -- запрос для получения заказа и выручки на все дни
+from order_prod
+         join orders on order_prod.order_id = orders.id
+         join sushi_item on order_prod.sushi_id = sushi_item.id
+group by order_prod.sushi_id, price, order_prod.count;
+
+
+
+select sum(sushi_item.price * order_prod.count)     -- запрос для получения выручки на все дни недели (сума)
+from order_prod
+         join orders on order_prod.order_id = orders.id
+         join sushi_item on order_prod.sushi_id = sushi_item.id;
+
+select orders.client_id, client.name -- так как клиентов мало, я вывел клиентов которые обслуживались в конкретный день
+from orders
+         join client  on orders.client_id = client.id
+where orders.day = 'tuesday';
+
+
+
+select order_prod.count, order_prod.sushi_id, sushi_item.name --"топ пять блюд" блюда которые заказывали больше 5 раз
+from order_prod
+         join sushi_item on order_prod.sushi_id = sushi_item.id
+where order_prod.count > 5;
+
+
+
+select sum(sushi_item.price * order_prod.count) * 0.03 as fee       -- запрос для получения выручки на все заказы 3 %
+from order_prod
+         join orders on order_prod.order_id = orders.id
+         join sushi_item on order_prod.sushi_id = sushi_item.id;
+
+
+
+select sushi_item.ingr, sushi_item.price * order_prod.count as price,   --при заказе от 50, скидка 2 процента
+case
+    when sushi_item.price * order_prod.count  > 50::money then  (sushi_item.price * order_prod.count) * 0.98
+    end as dis
+from order_prod
+join sushi_item on order_prod.sushi_id = sushi_item.id
+group by sushi_item.ingr, order_prod.count, price;
+
+
+
+
+select sushi_item.price * order_prod.count        -- запрос для получения выручки на все дни недели
+from order_prod
+         join orders on order_prod.order_id = orders.id
+         join sushi_item on order_prod.sushi_id = sushi_item.id;
+
+
+1
+select "Users"."role", count(*)
+from "Users"
+group by "Users"."role" having count(*) > 1;
+
+2
+select "Users"."firstName", "Users"."role", "Contests"."prize",
+case
+    when "Contests"."createdAt" between date('25-12-2019') and  date('14-01-2020') -- тут ложна быть дата--age(timestamp '25-12-2019', timestamp '14-01-2020')
+    then  ("Contests"."prize") * 0.1  -- = interval (2020.25.12 2020.14.01)
+end as cashback
+from "Contests"
+join "Users" on "Contests"."userId" = "Users".id
+group by "Users"."firstName", "Users"."role", "Contests"."createdAt", "Contests"."prize",  cashback;
+
+
+                select "Contests"."createdAt"
+                from "Contests"
+                where "Contests"."createdAt" between '25-12-2019'::timestamp and '26-12-2019'::timestamp;
+
+
+3
+select "Users"."role", "Users"."firstName", "Users"."lastName", "Users"."rating", ("Users"."balance" + 10)
+
+
+       from "Users"
+
+where "Users"."role" = 'creator'
+order by "Users"."rating"
+limit 3;
+
+
+no sql
+ db.Messages.aggregate([{$match: {"value": "паровоз"}},{$count: "count"}])

@@ -5,13 +5,15 @@ import classNames from 'classnames';
 
 
 const DialogBox = (props) => {
-    const {chatPreview, userId, getTimeStr, changeFavorite, changeBlackList, catalogOperation, goToExpandedDialog, chatMode, interlocutor} = props;
+    const {interlocutor, chatPreview, userId, getTimeStr, changeFavorite, changeBlackList, catalogOperation, goToExpandedDialog, chatMode } = props;
+    
     const {favoriteList, participants, blackList, _id, text, createAt} = chatPreview;
     const isFavorite = favoriteList[participants.indexOf(userId)];
     const isBlocked = blackList[participants.indexOf(userId)];
     return (
         <div className={styles.previewChatBox} onClick={() => goToExpandedDialog({
             interlocutor,
+            
             conversationData: {
                 participants: participants,
                 _id: _id,
@@ -19,10 +21,11 @@ const DialogBox = (props) => {
                 favoriteList: favoriteList
             }
         })}>
-            <img src={interlocutor.avatar === 'anon.png' ? CONSTANTS.ANONYM_IMAGE_PATH : `${CONSTANTS.publicURL}${interlocutor.avatar}`} alt='user'/>
+            
+            {/* <img src={interlocutor.avatar === 'anon.png' ? CONSTANTS.ANONYM_IMAGE_PATH : `${CONSTANTS.publicURL}${interlocutor.avatar}`} alt='user'/> */}
             <div className={styles.infoContainer}>
                 <div className={styles.interlocutorInfo}>
-                    <span className={styles.interlocutorName}>{interlocutor.firstName}</span>
+                    {/* <span className={styles.interlocutorName}>{interlocutor.firstName}</span> */}
                     <span className={styles.interlocutorMessage}>{text}</span>
                 </div>
                 <div className={styles.buttonsContainer}>
@@ -44,6 +47,7 @@ const DialogBox = (props) => {
             </div>
         </div>
     )
+    
 };
 
 export default DialogBox;

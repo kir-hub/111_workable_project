@@ -3,11 +3,13 @@ import { connect } from 'react-redux';
 import { authActionLogin, clearAuth } from '../../actions/actionCreator';
 import { Redirect } from 'react-router-dom';
 import styles from './LoginForm.module.sass';
+
 import { Field, reduxForm } from 'redux-form';
 import FormInput from '../FormInput/FormInput';
 import customValidator from '../../validators/validator';
 import Schems from '../../validators/validationSchems';
 import Error from '../../components/Error/Error';
+import { Link } from 'react-router-dom';
 
 class LoginForm extends React.Component{
 
@@ -58,6 +60,8 @@ class LoginForm extends React.Component{
               : 'LOGIN' }</span>
           </button>
         </form>
+        <Link className={styles.button} to="/ResetPassword"> Forgot Password? </Link>
+
       </div>
     );
   }

@@ -19,7 +19,7 @@ class Header extends React.Component {
   constructor(props){
     super(props);
     this.state= {
-      menuActive: false,
+      menuActive: true,
     }
   }
  
@@ -32,7 +32,7 @@ class Header extends React.Component {
   logOut = () => {
     localStorage.clear();
     this.props.clearUserStore();
-    //this.props.history.replace('/login');
+    
   };
 
   setMenuActive = () =>{  
@@ -41,10 +41,7 @@ class Header extends React.Component {
     })
   }
 
-  // startContests = () => {
-  //   this.props.history.push('/startContest');
-  // };
-
+ 
   renderLoginButtons = () => {
     if (this.props.data) {
       return (
@@ -94,7 +91,7 @@ class Header extends React.Component {
               <Link to="/login" onClick={this.logOut} style={{ textDecoration: 'none' }}>
                 <span className={styles.btn}>Logout</span>
               </Link>
-                {/* <span onClick={this.logOut}>Logout</span> */}
+                
               </li>
             </ul>
           </div>

@@ -20,13 +20,13 @@ const LearnSquadHelp = (props) => {
     
 
     return(
-        <div>
+        <>
             <Header/>
             {isFetching ? <SpinnerLoader/> : (<>
             <div className={styles.bodyCont}>
                 <div className={styles.videoCont}>
                     <span className={styles.videoSpan}> 
-                    <iframe width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+                    <iframe width="560" height="315" src="https://www.youtube.com/embed/5qap5aO4i9A" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen></iframe>
                     </span> 
                     <span className={styles.howWorkFaqCont}> <HowWorkFaq/> </span>
                  
@@ -34,9 +34,9 @@ const LearnSquadHelp = (props) => {
 
 
                 <Steps/>
-               
+                
                 <div className={styles.contestCont}>
-                    <Link className={styles.buttonLink} to="/contest">START A CONTEST </Link> 
+                    <Link className={styles.buttonLink} to="/startContest">START A CONTEST </Link> 
                     </div>
                 <div className={styles.questionsCont}>
                     <Asks/>
@@ -48,7 +48,7 @@ const LearnSquadHelp = (props) => {
                 <Footer/>
                 
                 </>)}
-        </div>
+        </>
     )
 }
 

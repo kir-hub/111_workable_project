@@ -14,7 +14,7 @@ export default function SingleButton(props) {
 
     return (
         <div className={styles.mainCont}>
-            <h2  onClick={setToggle(toggle = !toggle)}> {yesOrNo} </h2>
+            <h2  onClick={() => setToggle(!toggle)}> {yesOrNo} </h2>
             <p>{innerText} </p>
             <p> {Recommended}</p>
         </div>
