@@ -32,7 +32,7 @@ class LoginForm extends React.Component{
       notValid: styles.notValid,
       valid: styles.valid,
     };
-
+ 
     return (
       <div className={ styles.loginForm }>
         { error && <Error data={ error.data } status={ error.status }
@@ -60,7 +60,7 @@ class LoginForm extends React.Component{
               : 'LOGIN' }</span>
           </button>
         </form>
-        <Link className={styles.button} to="/ResetPassword"> Forgot Password? </Link>
+        <Link className={styles.button} to="/resetPass"> Forgot Password? </Link>
 
       </div>
     );
@@ -68,8 +68,8 @@ class LoginForm extends React.Component{
 }
 
 const mapStateToProps = (state) => {
-  const {auth} = state;
-  return {auth};
+  //const {auth} = state;
+  return {auth: state.auth} ;
 };
 
 const mapDispatchToProps = (dispatch) => (

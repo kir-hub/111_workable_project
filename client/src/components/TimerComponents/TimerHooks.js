@@ -22,14 +22,14 @@ const Timer =(props)=>{
 
         interval= setInterval(() => {
             const now = new Date().getTime();
-            const distance = countDownDate - now;
+            const timeLeft = countDownDate - now;
 
-            const days = Math.floor(distance / (1000*60*60*24));
-            const hours = Math.floor((distance % (1000*60*60*24) / (1000*60*60)));
-            const minutes = Math.floor((distance % (1000*60*60)) / (1000*60));
-            const seconds = Math.floor((distance % (1000*60)) / 1000);
+            const days = Math.floor(timeLeft / (1000*60*60*24));
+            const hours = Math.floor((timeLeft % (1000*60*60*24) / (1000*60*60)));
+            const minutes = Math.floor((timeLeft % (1000*60*60)) / (1000*60));
+            const seconds = Math.floor((timeLeft % (1000*60)) / 1000);
 
-            if(distance < 0){
+            if(timeLeft < 0){
                 //stop
                 clearInterval(interval.current)
                 setTimerOver(true)

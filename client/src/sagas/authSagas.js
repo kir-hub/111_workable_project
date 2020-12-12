@@ -6,6 +6,18 @@ import * as restController from '../api/rest/restController';
 
 
 
+export function* resetPasswordSaga(action){
+    yield put({type: ACTION.AUTH_ACTION_RESET_PASS});
+    try{
+        yield restController.resetPasswordRequest(action.data);
+        history.replace('/');
+        yield put({type: ACTION.AUTH_ACTION_SUCCESS});
+    }
+    catch(err){
+        yield put({type: ACTION.AUTH_ACTION_ERROR, error: err.response});
+    }
+}
+
 export  function* loginSaga(action){
     yield put({type: ACTION.AUTH_ACTION_REQUEST});
     try{

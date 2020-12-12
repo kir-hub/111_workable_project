@@ -14,6 +14,10 @@ const userQueries = require('./queries/userQueries');
 const bankQueries = require('./queries/bankQueries');
 const ratingQueries = require('./queries/ratingQueries');
 
+const mailer = require('../nodemailer/mailer')
+
+
+
 
 module.exports.resetPassword = async (req, res, next) => { 
   try{
@@ -21,13 +25,22 @@ module.exports.resetPassword = async (req, res, next) => {
     // const userResPass = await bd.findOne({email: req.body.email}) //почему бд, это из модели? зачем нам юзеркваери
      Object.assign(req.body, { password: req.hashPass });
     const accessToken = jwt.sign({
-      //userId: userResPass.id,s
+      
       password: userResPass.req.hashPass,
-      //email: userResPass.email,
+      email: userResPass.email,
     }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME});
-    //await userQueries.updateUser({ accessToken}, foundUser.id); // проверка ЗАЛОГИНЕН ЛИ
-    //res.send({token: accessToken});
+    await userQueries.updateUser({ accessToken}, foundUser.id); // проверка ЗАЛОГИНЕН ЛИ
+    res.send({token: accessToken});
+
+    const message = {
+      
+      to: req.body.email,
+      subject: 'token',
+      text: accessToken,
+    }
+    mailer(message)
     
+
     //отправить токен на почту. отправляя токен мне надо его где то расшифровать.
   }catch (err){
     next (err)
@@ -45,8 +58,12 @@ module.exports.decodeToken = async (req, res, next) =>{
   }
 }
 
+
 module.exports.login = async (req, res, next) => {
   try {
+
+   
+
     const foundUser = await userQueries.findUser({ email: req.body.email });
     await userQueries.passwordCompare(req.body.password, foundUser.password);
     const accessToken = jwt.sign({
@@ -63,6 +80,14 @@ module.exports.login = async (req, res, next) => {
     }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME });
     await userQueries.updateUser({ accessToken }, foundUser.id);
     res.send/*debug*/({ token: accessToken });
+
+    const message = {
+      
+      to: req.body.email,
+      subject: 'login success',
+      text: accessToken,
+    }
+    mailer(message)
 
   } catch (err) {
     next(err);

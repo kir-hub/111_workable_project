@@ -10,6 +10,8 @@ const upload = require('../utils/fileUpload');
 const router = express.Router();
 const queries = require('../controllers/queries/userQueries');
 
+
+
 router.post(
   '/registration',
   validators.validateRegistrationData,
@@ -20,7 +22,7 @@ router.post(
 router.post(
   '/resetPassword',
   validators.validateResetPasswordData,
-  hashPass,
+  // hashPass,
   userController.resetPassword,
 );
 

@@ -22,7 +22,7 @@ class RegistrationForm extends React.Component{
   }
 
   clicked = (values) => {
-    this.props.register({
+    this.props.register({ 
       firstName: values.firstName,
       lastName: values.lastName,
       displayName: values.displayName,
@@ -146,7 +146,7 @@ const mapStateToProps = (state) => {
     },
   };
 };
-
+ 
 const mapDispatchToProps = (dispatch) => (
   {
     register: (data) => dispatch(authActionRegister(data)),

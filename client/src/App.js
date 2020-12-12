@@ -41,7 +41,7 @@ class App extends Component {
                     pauseOnHover
                 />
                 <Switch>
-                    <Route exact path='/ResetPassword' component={(ResetPasswordPage)}/>
+                    <Route exact path='/resetPass' component={(ResetPasswordPage)}/>
 
                     <Route exact path='/Events' component={PrivateHoc(Events)}/>
                     <Route exact path='/LearnSquadHelp' component={(LearnSquadHelp)}/>

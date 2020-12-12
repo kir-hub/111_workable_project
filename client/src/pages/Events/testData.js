@@ -10,51 +10,39 @@ import useLocalStorage from './localStorageFunction/useLocalStorage'
 export default function Events() {
 
 
-    const [timers, setTimers] = useState([])//__________________________________
+    const [timers, setTimers] = useState([])
     const [date, setDate] = useState('')
-
     const [sec, setSec] = useState('00')
     const [minute, setMin] = useState('00')
     const [hour, setHour] = useState('00')
     const [day, setDay] = useState('')
     const [month, setMonth] = useState('')
     const [year, setYear] = useState('')
-
     const [title, setTitle] = useState('')
     const [description, setDescription] = useState('')
-
     const fullDate =  month+ ' '+ day + ' ' + year + ' ' + sec +':'+ minute +':'+ hour//sec +':'+ min +':'+ hour +' '+ day +' '+ month +' '+ year
     
     const timerHook = <Timer dataDate={fullDate} title={title} description={description}/>
 
+    
+    
     const dateHandler = ()=>{
         setDate(fullDate)
-        
         const newTimersArr = [...timers, timerHook]
-        
         newTimersArr.sort(compareTimers);             
-        console.log(newTimersArr);
-        
-        setTimers(newTimersArr ) 
-
-        //setTimers(arrayToRender)   
-         console.log(timerHook.props.dataDate);
-    }
-
-    if (timerHook.props.dataDate == '00:00:00'){
-        let isOver = true
-        console.log(isOver);
+        //console.log(newTimersArr);
+        setTimers(newTimersArr )   
+        // console.log(timerHook.props.dataDate);
+        //localStorage.setItem('arr', )
     }
     
-    
+    const mapedArray = timers.map((item, index) =><li key={index}>{item}</li>)
+
     const compareTimers = (a,b)=>{
         if (a.props.dataDate > b.props.dataDate) return 1;
         if (a.props.dataDate < b.props.dataDate) return -1;
     }
     
-     
-    
-
     return (
         <div className={styles.mainContainer}>
             
@@ -70,12 +58,10 @@ export default function Events() {
             <input onChange={e => setDescription(e.target.value)} value={description} placeholder='description'/>           
             <button onClick={dateHandler}> Add event</button>
             
-
             <hr/>
-
                 <ul className={styles.timersList}>
 
-                 {  timers.map((item, index) =><li key={index}>{item}</li>) }         {  /*айтемс это типа остальные таймеры по идее */}
+                 { mapedArray }         {  /*айтемс это типа остальные таймеры по идее */}
                  
                 </ul>
 

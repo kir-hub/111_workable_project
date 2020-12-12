@@ -12,9 +12,11 @@ import updateContestReducer from './updateContestReducer';
 import chatReducer from './chatReducer';
 import userProfileReducer from './userProfileReducer';
 
+import resetPassReducer from './resetPassReducer';
 
 
-const appReducer=combineReducers({
+
+const appReducer = combineReducers({
    form: formReducer,
    userStore: getUserReducer,
    auth: authReducer,
@@ -26,7 +28,9 @@ const appReducer=combineReducers({
    bundleStore: bundleReducer,
    updateContestStore: updateContestReducer,
    chatStore: chatReducer,
-   userProfile: userProfileReducer
+   userProfile: userProfileReducer,
+
+   resetPass: resetPassReducer,
 });
 
 export default appReducer;

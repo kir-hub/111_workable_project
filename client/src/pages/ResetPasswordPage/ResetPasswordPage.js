@@ -7,8 +7,10 @@ import CONSTANTS from '../../constants';
 import { connect } from 'react-redux';
 
 import { clearErrorResetPass } from '../../actions/actionCreator';
+import { clearErrorSignUpAndLogin } from '../../actions/actionCreator';
 
 
+ 
 const ResetPasswordPage = (props) => {
 
     props.clearError();
@@ -17,16 +19,8 @@ const ResetPasswordPage = (props) => {
       props.history.replace('/');
     };
 
-
-
-
-
-
     return (
         <div className={ styles.signUpPage }>
-
-
-
 
       <div className={styles.signUpContainer}>
         <div className={ styles.headerSignUpPage }>
@@ -36,7 +30,7 @@ const ResetPasswordPage = (props) => {
             <Link to='/login' style={ {textDecoration: 'none'} }><span>Login</span></Link>
           </div>
         </div>
-        <ResetPasswordForm changeRoute={ changeRoute }/>
+        <ResetPasswordForm/>
       </div>
 
       
@@ -53,7 +47,7 @@ const ResetPasswordPage = (props) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    clearError: () => dispatch(clearErrorResetPass()),
+    clearError: () => dispatch(clearErrorSignUpAndLogin()),
   };
 };
 

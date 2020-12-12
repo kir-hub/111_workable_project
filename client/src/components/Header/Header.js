@@ -151,7 +151,7 @@ class Header extends React.Component {
 
             <div className={this.state.menuActive ? styles.nav : styles.active} >
               <ul className={styles.menu}>
-                <NameIdeas /> {/*разбил на компоненты */}
+                <NameIdeas /> 
                 <Constests />
                 <OurWork />
                 <NamesForSale />

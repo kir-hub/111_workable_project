@@ -24,7 +24,7 @@ const LoginPage = (props) => {
           </div>
         </div>
         <div className={ styles.loginFormContainer }>
-          <LoginForm changeRoute={ changeRoute }/>
+           <LoginForm /> {/*changeRoute={ changeRoute } */}
         </div>
       </div>
     </div>

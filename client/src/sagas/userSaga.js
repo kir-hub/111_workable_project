@@ -18,6 +18,7 @@ export  function* privateSaga(action){
 }
 
 
+
 export function* notAuthorizeSaga(action){
     yield put({type: ACTION.GET_USER_REQUEST});
     try{
@@ -42,10 +43,10 @@ export  function* updateUserData(action){
     catch (e) {
         yield  put({type: ACTION.UPDATE_USER_DATA_ERROR, error: e.response});
     }
-}
+} 
 
 export function* headerRequest(){
-    yield put({type: ACTION.GET_USER_REQUEST});
+    yield put({type: ACTION.GET_USER_REQUEST}); 
     try{
         const {data}=yield  restController.getUser();
         yield  put({type: ACTION.GET_USER_SUCCESS, data: data});

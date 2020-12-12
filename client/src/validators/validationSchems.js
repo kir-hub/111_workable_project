@@ -7,7 +7,6 @@ export default {
     ResetPassSchem: yup.object().shape({
         email: yup.string().email('check email').required('Email is required'),
         password: yup.string().test('test-password','min 6 symbols',value => (value && value.trim().length>=6)).required('required'),
-        confirmPassword: yup.string().required('confirm password is required').oneOf([yup.ref('password')],'confirmation pass must match password'),
     }),
     
     LoginSchem: yup.object().shape({

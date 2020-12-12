@@ -12,7 +12,7 @@ const ContestBox = (props) => {
         if (diff._data.days !== 0)
             str = `${diff._data.days}d `;
         if (diff._data.hours !== 0)
-            str += `${diff._data.hours}h`;
+            str += `${diff._data.hours + 2}h` ;
         if (str.length === 0)
             str = 'less than one hour';
         return str;
