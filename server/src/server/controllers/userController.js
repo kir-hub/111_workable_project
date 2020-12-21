@@ -16,8 +16,11 @@ const ratingQueries = require('./queries/ratingQueries');
 
 const logger = require('../logger/log')
 
-const mailer = require('../nodemailer/mailer')
+const mailer = require('../nodemailer/mailer');
+const { use } = require('../router');
 
+
+const link = 'http://localhost:3000/EnterToken'
 
 
 module.exports.resetPassword = async (req, res, next) =>{  //firstAction\\    
@@ -29,13 +32,15 @@ module.exports.resetPassword = async (req, res, next) =>{  //firstAction\\
       password: newPassword,//.password//hashPass
       email: /*req.body.email*/foundUser.email
     },CONSTANTS.JWT_SECRET,{ expiresIn: CONSTANTS.ACCESS_TOKEN_TIME });
+    
     const message = {
+      
       to: req.body.email,
-      subject: 'copy token and follow ${localhost:3000/resPassLink}',
-      text: accessToken,
+      subject: accessToken ,
+      html: `<h2>copy token and follow <a href='${link}'>link </a></h2> `,
     }
     mailer(message)
-
+    res.send/*debug*/({ email: req.body.email});
   }catch (e){
     next(e)
   }
@@ -51,8 +56,8 @@ module.exports.resetPassword = async (req, res, next) =>{  //firstAction\\
 //вообще ничего не понятно
 module.exports.setPassword = async (req, res, next) =>{  
   try{ 
-  const decoded = jwt.decode(/*req.token*/token, {complete: true});
-  getPassFromPayload = JSON.parse(decoded.payload)
+  const decoded = jwt.decode(/*req.token*/req.token, {complete: true});
+  const getPassFromPayload = JSON.parse(decoded.payload)
     console.log(decoded.header);
     console.log(decoded.payload)
   const userToUpdate = await bd.Users.findUser({email: getPassFromPayload.email}) // а где взять конкретно этот эмейл
@@ -70,6 +75,52 @@ module.exports.setPassword = async (req, res, next) =>{
   }catch(e){
     next(e)
   }
+}
+
+module.exports.verifyChangedPassword = async (req, res, next) =>{
+  try{
+    const {token} = req.body;
+    if(token){
+      jwt.verify(token, CONSTANTS.JWT_SECRET, (err, decodedToken)=> {
+        if(err) {
+          return res.status(400)
+        }
+        const {email, password} = decodedToken
+        const userWhoNeedToChangePassword = await userQueries.findUser({email: email})
+        if(userWhoNeedToChangePassword){
+          await function setPassword (){
+            try{ 
+              const decoded = jwt.decode(/*req.token*/token, {complete: true});
+              const getPassFromPayload = JSON.parse(decoded.payload)
+                console.log(decoded.header);
+                console.log(decoded.payload)
+              const userToUpdate = await userQueries.findUser({email: getPassFromPayload.email}) // а где взять конкретно этот эмейл
+              if (!userToUpdate){
+                throw new NotFound('user with this data didn`t exist');
+                //const newPassword = getPassFromPayload.password
+                
+            
+              } else{
+                res.send({userToUpdate: email})
+                return userToUpdate.set({password: getPassFromPayload.password}, {email: userToUpdate.email})
+                
+              }
+              
+              // const changePassword = async (/*data*/) =>{ await bd.Users.update({password: newPassword}/*data || req.body.password или newPassword*/ ,
+              //    {where: { email: userToUpdate.email } } ) },
+            
+              }catch(e){
+                next(e)
+              }
+          }
+        }else{
+          return res.status(400)
+        }
+      })
+    }
+  }catch(e){
+  next(e)
+}
 }
 
 //тоже рабочий вариант, наверное
@@ -206,12 +257,12 @@ module.exports.login = async (req, res, next) => {
     res.send/*debug*/({ token: accessToken });
     logger.info('login')
     
-
+    // const link = 'http://localhost:3000/EnterToken'
     // const message = {
       
     //   to: req.body.email,
-    //   subject: 'login success',
-    //   text: accessToken,
+    //   subject: accessToken ,
+    //   html: `<h2>copy token and follow <a href='${link}'>link </a></h2> `,
     // }
     // mailer(message)
 

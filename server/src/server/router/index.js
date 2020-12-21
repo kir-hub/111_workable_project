@@ -13,7 +13,8 @@ const queries = require('../controllers/queries/userQueries');
 
 router.put(
   "/setNewPassword",
-  queries.setPassword
+  userController.verifyChangedPassword
+  //queries.setPassword
   //userController.setPassword
   // function(req, res, next){
   //   passUpdate(

@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-//import { authActionLogin, clearAuth } from '../../actions/actionCreator';
+import { authActionLogin, executePasswordAction } from '../../actions/actionCreator';
 import { Redirect } from 'react-router-dom';
 import styles from '../LoginForm/LoginForm.module.sass';
 
@@ -22,8 +22,8 @@ class EnterTokenForm extends React.Component{
   };
 
   render () {
-    const {error, isFetching} = this.props.auth;
-    const {handleSubmit, submitting, authClear} = this.props;
+    
+    const {handleSubmit, submitting} = this.props;
 
     const formInputClasses = {
       container: styles.inputContainer,
@@ -35,12 +35,12 @@ class EnterTokenForm extends React.Component{
  
     return (
       <div className={ styles.loginForm }>
-        { error && <Error data={ error.data } status={ error.status }
-                          clearError={ authClear }/> }
+        
+
         <h2>ENTER TOKEN</h2>
         <form onSubmit={ handleSubmit(this.clicked) }>
           <Field
-            name='email'
+            name='token'
             classes={ formInputClasses }
             component={ FormInput }
             type='text'
@@ -48,9 +48,7 @@ class EnterTokenForm extends React.Component{
           />
           <button type='submit' disabled={ submitting }
                   className={ styles.submitContainer }>
-            <span className={ styles.inscription }>{ isFetching
-              ? 'Submitting...'
-              : 'SUBMIT' }</span>
+            <span className={ styles.inscription }>{'SUBMIT' }</span>
           </button>
         </form>
         

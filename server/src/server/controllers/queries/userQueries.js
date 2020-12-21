@@ -24,17 +24,20 @@ module.exports.findUser = async (predicate, transaction) => {
 
 module.exports.setPassword = async (req, res, next) =>{  
   try{ 
-  const decoded = jwt.decode(/*req.token*/token, {complete: true});
-  getPassFromPayload = JSON.parse(decoded.payload)
+  const decoded = jwt.decode(/*req.token*/req.token, {complete: true});
+  const getPassFromPayload = JSON.parse(decoded.payload)
     console.log(decoded.header);
     console.log(decoded.payload)
   const userToUpdate = await bd.Users.findUser({email: getPassFromPayload.email}) // а где взять конкретно этот эмейл
   if (!userToUpdate){
     throw new NotFound('user with this data didn`t exist');
     //const newPassword = getPassFromPayload.password
+    
 
   } else{
+    res.send({userToUpdate: email})
     return userToUpdate.set({password: getPassFromPayload.password}, {email: userToUpdate.email})
+    
   }
   
   // const changePassword = async (/*data*/) =>{ await bd.Users.update({password: newPassword}/*data || req.body.password или newPassword*/ ,
@@ -64,9 +67,17 @@ module.exports.setPassword = async (req, res, next) =>{
 // }
 
 module.exports.changePassword = async (data) =>{
-  const newPassword = await bd.Users.update(data, {where: {
-    email: req.body.email
-  }})
+  const [number, updatedSmth] = await bd.Users.update({
+      where: {email: req.body.email},
+      returning: true,
+      plain: true
+    })
+    
+//   const newPassword = await bd.Users.update(data, {where: {
+//     email: req.body.email
+//   }
+// }
+// )
   
 
 }

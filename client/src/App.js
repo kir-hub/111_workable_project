@@ -22,6 +22,7 @@ import ChatContainer from './components/Chat/ChatComponents/ChatContainer/ChatCo
 import LearnSquadHelp from './pages/LearnSquadHelp/LearnSquadHelp'
 import Events from './pages/Events/testData'
 import ResetPasswordPage from './pages/ResetPasswordPage/ResetPasswordPage';
+import EnterTokenForm from './components/EnterTokenForm/EnterTokenForm'
 
 
 class App extends Component {
@@ -42,9 +43,10 @@ class App extends Component {
                 />
                 <Switch>
                     <Route exact path='/resetPass' component={(ResetPasswordPage)}/>
-
+                    <Route exact path='/EnterToken' component={(EnterTokenForm)}/> 
                     <Route exact path='/Events' component={PrivateHoc(Events)}/>
                     <Route exact path='/LearnSquadHelp' component={(LearnSquadHelp)}/>
+
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/login' component={OnlyNotAuthorizedUserHoc(LoginPage)}/>
                     <Route exact path='/registration' component={OnlyNotAuthorizedUserHoc(RegistrationPage)}/>
