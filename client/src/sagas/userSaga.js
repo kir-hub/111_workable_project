@@ -5,6 +5,25 @@ import {controller} from '../api/ws/socketController';
 
 
 
+export  function* updateUserPassword(action){//вот это не нужно
+    try{
+        const {data}=yield restController.executePasswordRequest(action.data);
+        yield put({type: ACTION.SET_NEW_PASSWORD,data: data});
+        yield put({type: ACTION.GET_USER_REQUEST});
+        try{
+            const {data}=yield  restController.getUser();
+            yield  put({type: ACTION.GET_USER_SUCCESS, data: data});
+            controller.subscribe(data.id);
+        }
+            catch (e) {
+            yield put({type: ACTION.GET_USER_ERROR, error: e.response});
+        }
+    }
+    catch (e) {
+        yield  put({type: ACTION.UPDATE_USER_PASSWORD_ERROR, error: e.response});
+    }
+} 
+
 export  function* privateSaga(action){
     yield put({type: ACTION.GET_USER_REQUEST});
     try{

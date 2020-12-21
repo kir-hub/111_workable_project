@@ -11,14 +11,20 @@ module.exports.validateRegistrationData = async (req, res, next) => {
   }
 };
 
-module.exports.validateResetPasswordData = async (req, res, next) =>{ //-------------------------------------------
+module.exports.validateResetPasswordData = async (req, res, next) =>{ //-------------------------------------------a zachem?
   const validationResult = await schems.resetPasswordSchem.isValid(req.body);
-  if(!validationResult){
-    return next(new BadRequestError('password not correct'));
-    }else{
-      next();
-    }
+  if (validationResult) {
+    next();
+  } else {
+    return next(new BadRequestError('Invalid data for login'));
+  }
 };
+//   if(!validationResult){
+//     return next(new BadRequestError('password not correct'));
+//     }else{
+//       next();
+//     }
+// };
 
 
 module.exports.validateLogin = async (req, res, next) => {

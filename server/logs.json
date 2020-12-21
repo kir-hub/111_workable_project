@@ -1,0 +1,17 @@
+{"name":"myapp","hostname":"localHost","pid":6544,"level":50,"msg":"err","time":"2020-12-21T16:13:30.283Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":2764,"level":50,"msg":"err","time":"2020-12-21T16:13:32.913Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":7068,"level":50,"msg":"err","time":"2020-12-21T16:15:52.805Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":3984,"level":50,"msg":"err","time":"2020-12-21T16:17:06.857Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":11504,"level":50,"msg":"err","time":"2020-12-21T16:19:11.518Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":1160,"level":50,"msg":"err","time":"2020-12-21T16:20:47.344Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":1160,"level":30,"msg":"error","time":"2020-12-21T16:20:47.343Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":1160,"level":50,"msg":"err","time":"2020-12-21T16:20:47.344Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":1160,"level":50,"msg":"err","time":"2020-12-21T16:20:47.344Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":1160,"level":20,"msg":"deb","time":"2020-12-21T16:20:47.344Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":1160,"level":50,"msg":"err","time":"2020-12-21T16:20:47.344Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":13468,"level":50,"msg":"err","time":"2020-12-21T16:20:52.769Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":13468,"level":30,"msg":"error","time":"2020-12-21T16:20:52.768Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":13468,"level":50,"msg":"err","time":"2020-12-21T16:20:52.769Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":13468,"level":50,"msg":"err","time":"2020-12-21T16:20:52.769Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":13468,"level":20,"msg":"deb","time":"2020-12-21T16:20:52.769Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":13468,"level":50,"msg":"err","time":"2020-12-21T16:20:52.769Z","v":0}

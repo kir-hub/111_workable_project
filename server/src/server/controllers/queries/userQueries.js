@@ -2,9 +2,9 @@ const bd = require('../../models/index');
 const NotFound = require('../../errors/UserNotFoundError');
 const ServerError = require('../../errors/ServerError');
 const bcrypt = require('bcrypt');
-const { db } = require('../../models/mongoModels/Message');
+const { db, where } = require('../../models/mongoModels/Message');
 
-module.exports.updateUser = async (data, userId, transaction) => {
+module.exports.updateUser = async (data, userId, transaction) => { // это чтобы залогинить???
   const [updatedCount, [updatedUser]] = await bd.Users.update(data,
     { where: { id: userId }, returning: true, transaction });
   if (updatedCount !== 1) {
@@ -22,6 +22,32 @@ module.exports.findUser = async (predicate, transaction) => {
   }
 };
 
+module.exports.setPassword = async (req, res, next) =>{  
+  try{ 
+  const decoded = jwt.decode(/*req.token*/token, {complete: true});
+  getPassFromPayload = JSON.parse(decoded.payload)
+    console.log(decoded.header);
+    console.log(decoded.payload)
+  const userToUpdate = await bd.Users.findUser({email: getPassFromPayload.email}) // а где взять конкретно этот эмейл
+  if (!userToUpdate){
+    throw new NotFound('user with this data didn`t exist');
+    //const newPassword = getPassFromPayload.password
+
+  } else{
+    return userToUpdate.set({password: getPassFromPayload.password}, {email: userToUpdate.email})
+  }
+  
+  // const changePassword = async (/*data*/) =>{ await bd.Users.update({password: newPassword}/*data || req.body.password или newPassword*/ ,
+  //    {where: { email: userToUpdate.email } } ) },
+
+  }catch(e){
+    next(e)
+  }
+}
+
+
+
+
 // module.exports.userResetPass = async (data, userId) =>{
 //   const [updatedPass, updatedRows] = await bd.Users.update(data, { //переделать
 //     where: {id: userId}, returning: true
@@ -35,7 +61,15 @@ module.exports.findUser = async (predicate, transaction) => {
 //   // const newPass = await bd.Users.findByPk({
 //   //   where: req
 //   // })
-// };
+// }
+
+module.exports.changePassword = async (data) =>{
+  const newPassword = await bd.Users.update(data, {where: {
+    email: req.body.email
+  }})
+  
+
+}
 
 module.exports.userCreation = async (data) => {
   const newUser = await bd.Users.create(data);
@@ -50,5 +84,6 @@ module.exports.passwordCompare = async (pass1, pass2) => {
   const passwordCompare = await bcrypt.compare(pass1, pass2);
   if ( !passwordCompare) {
     throw new NotFound('Wrong password');
+    
   }
 };

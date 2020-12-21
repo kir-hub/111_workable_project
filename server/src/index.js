@@ -13,6 +13,21 @@ const path  = require('path')
 const PORT = process.env.PORT || 9632;
 const app = express();
 
+const logger = require('./server/logger/log')
+logger.info('error')//
+logger.debug('deb')
+logger.error('err')//
+
+// app.all('*', (req, res, next) => {
+//   logger.info('incoming request', {method: req.method});
+
+//   logger.debug('incoming request verbose', {
+//     headers: req.headers,
+//     query: req.query,
+//     body: req.body
+//   });
+//   return next()
+//})  //ну и что дальше с этим делать
 
 
 // const morgan = require('morgan'); //____________________________________

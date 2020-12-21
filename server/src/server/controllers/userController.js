@@ -14,49 +14,173 @@ const userQueries = require('./queries/userQueries');
 const bankQueries = require('./queries/bankQueries');
 const ratingQueries = require('./queries/ratingQueries');
 
+const logger = require('../logger/log')
+
 const mailer = require('../nodemailer/mailer')
 
 
 
-
-module.exports.resetPassword = async (req, res, next) => { 
-  try{
-    const userResPass = await userQueries.findUser({email: req.body.email}) //почему бд, это из модели? зачем нам юзеркваери
-    // const userResPass = await bd.findOne({email: req.body.email}) //почему бд, это из модели? зачем нам юзеркваери
-     Object.assign(req.body, { password: req.hashPass });
+module.exports.resetPassword = async (req, res, next) =>{  //firstAction\\    
+    try{
+    const foundUser = await userQueries.findUser({ email: req.body.email });
+    const newPassword = req.body.password
+    //Object.assign(req.body, { password: req.hashPass });
     const accessToken = jwt.sign({
-      
-      password: userResPass.req.hashPass,
-      email: userResPass.email,
-    }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME});
-    await userQueries.updateUser({ accessToken}, foundUser.id); // проверка ЗАЛОГИНЕН ЛИ
-    res.send({token: accessToken});
-
+      password: newPassword,//.password//hashPass
+      email: /*req.body.email*/foundUser.email
+    },CONSTANTS.JWT_SECRET,{ expiresIn: CONSTANTS.ACCESS_TOKEN_TIME });
     const message = {
-      
       to: req.body.email,
-      subject: 'token',
+      subject: 'copy token and follow ${localhost:3000/resPassLink}',
       text: accessToken,
     }
     mailer(message)
+
+  }catch (e){
+    next(e)
+  }
+}
+
+// module.exports.changePassword = async (data) =>{
+//   const newPassword = await bd.Users.update(data, {where: {
+//     email: req.body.email
+//   }})
+  
+
+// }
+//вообще ничего не понятно
+module.exports.setPassword = async (req, res, next) =>{  
+  try{ 
+  const decoded = jwt.decode(/*req.token*/token, {complete: true});
+  getPassFromPayload = JSON.parse(decoded.payload)
+    console.log(decoded.header);
+    console.log(decoded.payload)
+  const userToUpdate = await bd.Users.findUser({email: getPassFromPayload.email}) // а где взять конкретно этот эмейл
+  if (!userToUpdate){
+    throw new NotFound('user with this data didn`t exist');
+    //const newPassword = getPassFromPayload.password
+
+  } else{
+    return userToUpdate.set({password: getPassFromPayload.password}, {email: userToUpdate.email})
+  }
+  
+  // const changePassword = async (/*data*/) =>{ await bd.Users.update({password: newPassword}/*data || req.body.password или newPassword*/ ,
+  //    {where: { email: userToUpdate.email } } ) },
+
+  }catch(e){
+    next(e)
+  }
+}
+
+//тоже рабочий вариант, наверное
+// module.exports.setPassword = async (req, res, next) =>{  //это типа второе действие должно быть. А как теперь сделать запорос на смену пароля
+//   // как вариант надо подумать
+//   try{ 
+//   const decoded = jwt.decode(/*req.token*/token, {complete: true});
+//   getPassFromPayload = JSON.parse(decoded.payload)
+//     console.log(decoded.header);
+//     console.log(decoded.payload)
+//   const userToUpdate = await userQueries.findUser({email: getPassFromPayload.email}) // а где взять конкретно этот эмейл
+//   const newPassword = getPassFromPayload.password
+//   const changePassword = async (/*data*/) =>{ await bd.Users.update({password: newPassword}/*data || req.body.password или newPassword*/ ,
+//      {where: { email: userToUpdate.email } } ) },
+
+//   }catch(e){
+//     next(e)
+//   }
+// }
+
+
+
+
+
+  // куда это вставить??????????
+  // const [number, updatedSmth] = await bd.Users.update({
+  //   where: {email: req.body.email},
+  //   returning: true,
+  //   plain: true
+  // })
+  
+
+   
+ 
+    
+  //   }
+  
+  // try{
+  //   const userResPass = await userQueries.findUser({email: req.body.email}) 
+  //   const [rowsCount, rows] = await userResPass.update(req.body.password, {
+  //     where: {      
+  //       email: userResPass.email,
+  //     },
+  //     returning: true,
+  //   });
+  //   if(rowsCount){
+  //     const data = rows[0].get();
+
+  //   }
+  //   next()
+
+   
+  
+
+// module.exports.resetPassword = async (req, res, next) => { 
+//   try{
+    
+//     const userResPass = await userQueries.findUser({email: req.body.email}) //почему бд, это из модели? зачем нам юзеркваери
+//                                                                                     // const userResPass = await bd.findOne({email: req.body.email}) //почему бд, это из модели? зачем нам юзеркваери
+    
+//      Object.assign(req.body, { password: req.hashPass });
+//     const accessToken = jwt.sign({
+      
+//       password: userResPass.req.hashPass,
+//       email: userResPass.email,
+//     }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME});
+//     await userQueries.updateUser({ accessToken}, foundUser.id); // проверка ЗАЛОГИНЕН ЛИ
+//     res.send({token: accessToken});
+
+//     const message = {
+      
+//       to: req.body.email,
+//       subject: 'token',
+//       text: accessToken,
+//     }
+//     mailer(message)
     
 
-    //отправить токен на почту. отправляя токен мне надо его где то расшифровать.
-  }catch (err){
-    next (err)
-  }
-}
+//     //отправить токен на почту. отправляя токен мне надо его где то расшифровать.
+//   }catch (err){
+//     next (err)
+//   }
+// }
 
 
+// это должно быть в кваери
+// module.exports.decodeToken = async (req, res, next) =>{
+//   try{
+//     const newPassword = await bd.findOne({email: req.body.email})
+//     const decodedToken = jwt.verify(tokenFromMail)
+//     const pass = tokenfromemail.password
+//     changePassFunc(pass){
+//   const tokenData = jwt.verify(accessToken, CONSTANTS.JWT_SECRET);
+//     const foundUser = await userQueries.findUser({ id: tokenData.email });
+    
+//     const [rowsCount, rows] = await userResPass.update(req.body, {
+    //   where: {      
+    //     email: userResPass.email,
+    //   },
+    //   returning: true,
+    // });
+    // if(rowsCount){
+    //   const data = rows[0].get();
 
-module.exports.decodeToken = async (req, res, next) =>{
-  try{
-    const newPassword = await bd.findOne({email: req.body.email})
-    const decodedToken = jwt.verify(tokenFromMail)
-  }catch (e){
-    next (e)
-  }
-}
+    // }
+    // next()
+// }
+//   }catch (e){
+//     next (e)
+//   }
+// }
 
 
 module.exports.login = async (req, res, next) => {
@@ -80,16 +204,19 @@ module.exports.login = async (req, res, next) => {
     }, CONSTANTS.JWT_SECRET, { expiresIn: CONSTANTS.ACCESS_TOKEN_TIME });
     await userQueries.updateUser({ accessToken }, foundUser.id);
     res.send/*debug*/({ token: accessToken });
+    logger.info('login')
+    
 
-    const message = {
+    // const message = {
       
-      to: req.body.email,
-      subject: 'login success',
-      text: accessToken,
-    }
-    mailer(message)
+    //   to: req.body.email,
+    //   subject: 'login success',
+    //   text: accessToken,
+    // }
+    // mailer(message)
 
   } catch (err) {
+    logger.error('errorERR')
     next(err);
   }
 };

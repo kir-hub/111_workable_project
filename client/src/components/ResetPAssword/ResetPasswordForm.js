@@ -7,6 +7,8 @@ import { Field, reduxForm } from 'redux-form'
 import CONSTANTS from '../../constants';
 import customValidator from '../../validators/validator';
 import Schems from '../../validators/validationSchems';
+import Error from '../Error/Error';
+
 
 
 
@@ -30,7 +32,8 @@ class ResetPasswordForm extends React.Component{
 
 
   render () {
-  const {handleSubmit, submitting} = this.props;
+    const {handleSubmit, submitting } = this.props;
+    
   
   const formInputClasses = {
           container: styles.inputContainer,
@@ -40,12 +43,9 @@ class ResetPasswordForm extends React.Component{
           valid: styles.valid,
         };
 
-       
-
-
       return (
           <div className={ styles.signUpFormContainer}>
-
+        
 
       <form onSubmit={ handleSubmit(this.clicked) } >
       <div className={ styles.row }>
@@ -81,12 +81,12 @@ class ResetPasswordForm extends React.Component{
 }
 
 
-const mapStateToProps = (state) => {
-return {
-  auth: state.auth,
+// const mapStateToProps = (state) => {
+// return { 
+//   auth: state.auth,
   
-};
-};
+// };
+// };
 
 const mapDispatchToProps = (dispatch) => (
   {
@@ -95,7 +95,7 @@ const mapDispatchToProps = (dispatch) => (
   }
 );
 
-export default connect(mapStateToProps, mapDispatchToProps)(reduxForm({
+export default connect(/*mapStateToProps,*/null,  mapDispatchToProps)(reduxForm({
   form: 'login',
   validate: customValidator(Schems.ResetPassSchem),
 })(ResetPasswordForm));

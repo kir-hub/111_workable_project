@@ -34,9 +34,12 @@ export default function Events() {
         setTimers(newTimersArr )   
         // console.log(timerHook.props.dataDate);
         //localStorage.setItem('arr', )
+        
     }
     
     const mapedArray = timers.map((item, index) =><li key={index}>{item}</li>)
+
+    
 
     const compareTimers = (a,b)=>{
         if (a.props.dataDate > b.props.dataDate) return 1;

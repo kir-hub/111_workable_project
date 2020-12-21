@@ -1,5 +1,12 @@
 import ACTION from './actionTypes';
 
+export const executePasswordAction = (data) => {
+    return {
+        type: ACTION.EXECUTE_PASSWORD_ACTION,
+        data: data
+    }
+};
+
 export const authActionResetPass = (data) => {
     return{
         type: ACTION.AUTH_ACTION_RESET_PASS,

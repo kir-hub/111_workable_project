@@ -1,6 +1,7 @@
 import http from '../interceptor';
 
 export const resetPasswordRequest = (data) => http.post('resetPass', data);
+export const executePasswordRequest = (data) => http.put('setNewPassword', data);
 
 export const registerRequest = (data) => http.post('registration', data); 
 export const loginRequest = (data) => http.post('login', data);
