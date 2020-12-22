@@ -86,15 +86,15 @@ module.exports.verifyChangedPassword = async (req, res, next) =>{
           return res.status(400)
         }
         const {email, password} = decodedToken
-        const userWhoNeedToChangePassword = await userQueries.findUser({email: email})
+        const userWhoNeedToChangePassword =  userQueries.findUser({email: email})
         if(userWhoNeedToChangePassword){
-          await function setPassword (){
+          function setPassword (){
             try{ 
               const decoded = jwt.decode(/*req.token*/token, {complete: true});
               const getPassFromPayload = JSON.parse(decoded.payload)
                 console.log(decoded.header);
                 console.log(decoded.payload)
-              const userToUpdate = await userQueries.findUser({email: getPassFromPayload.email}) // а где взять конкретно этот эмейл
+              const userToUpdate = userQueries.findUser({email: getPassFromPayload.email}) // а где взять конкретно этот эмейл
               if (!userToUpdate){
                 throw new NotFound('user with this data didn`t exist');
                 //const newPassword = getPassFromPayload.password
