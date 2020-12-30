@@ -2,37 +2,44 @@ import React , {useState, useRef, useEffect} from 'react'
 import Component from '../Component/Component'
 import styles from './timer.module.sass'
 import CustomerDashboard from '../CustomerDashboard/CustomerDashboard'
+import Bar from './bar'
 
 const Timer =(props)=>{
-    
+     
 
     const [timerDays, setTimerDays] = useState('00')
     const [timerHours, setTimerHours] = useState('00')
     const [timerMinutes, setTimerMinutes] = useState('00')
     const [timerSeconds, setTimerSeconds] = useState('00')
-    const [isOver, setTimerOver] = useState(false)
+    const [isOver, setTimerOver] = useState(true)
+  
 
     let interval = useRef();
 
-    const {dataDate, title, description} = props;
+    const {dataDate, title} = props;
 
     const startsTimer = () =>{
-        //const {dataDate, title, description} = props;
+    
         const countDownDate = new Date(dataDate).getTime();
+
+        
 
         interval= setInterval(() => {
             const now = new Date().getTime();
             const timeLeft = countDownDate - now;
+            
 
             const days = Math.floor(timeLeft / (1000*60*60*24));
             const hours = Math.floor((timeLeft % (1000*60*60*24) / (1000*60*60)));
             const minutes = Math.floor((timeLeft % (1000*60*60)) / (1000*60));
             const seconds = Math.floor((timeLeft % (1000*60)) / 1000);
-
+            
+            
             if(timeLeft < 0){
                 //stop
                 clearInterval(interval.current)
                 setTimerOver(true)
+                
                 
             }else{
                 //update
@@ -40,7 +47,22 @@ const Timer =(props)=>{
                 setTimerHours(hours);
                 setTimerMinutes(minutes);
                 setTimerSeconds(seconds);
+               
+                
+                
+                // setProgress(oldValue => {
+                //     let  newValue = oldValue +1
+                //     if(newValue == timeLeft){
+                //         newValue = oldValue 
+                //     }
+                    
+                    
+                //      return newValue
+                     
+                // })
             }
+             
+            
         }, 1000)
     }
 
@@ -58,40 +80,35 @@ const Timer =(props)=>{
             <div className={styles.displayNone}> <CustomerDashboard display={isOver}/></div>
             
             <div className={styles.timerContainer}>
-                {/* <h1>{isOver ? 'O' : ''}</h1> */}
+                {/* <Bar value={progress} max={bone }/> */}
                 <div className={styles.title}>
-                    
                     <h2> {title} </h2>
-                    <p> {description} </p>
-                    
+                    {/* <h1>{progress}</h1> */}
                 </div>
                 <div className={styles.timer}>
                     <div className={styles.timeSection}>
                         <p>
-                            Days
+                            D
                         </p>
-                        <p> <small>{timerDays} </small></p>
+                        <p> {timerDays} </p>
                     </div>
                     
                     <div className={styles.timeSection}>
                         <p>
-                            Hours
+                            H
                         </p>
-                        <p> <small>{timerHours} </small></p>
+                        <p> {timerHours} </p>
                     </div>
                     
                     <div className={styles.timeSection}>
                         <p>
-                            Minutes
+                            Min
                         </p>
-                        <p> <small>{timerMinutes} </small></p>
+                        <p> {timerMinutes} </p>
                     </div>
                     
                     <div className={styles.timeSection}>
-                        <p>
-                            Seconds
-                        </p>
-                        <p> <small>{timerSeconds} </small></p>
+                        <p>Sec</p> <p> {timerSeconds} </p>
                     </div>
                     
                 </div>

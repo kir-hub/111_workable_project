@@ -60,8 +60,9 @@ class LoginForm extends React.Component{
               : 'LOGIN' }</span>
           </button>
         </form>
+        
         <Link className={styles.button} to="/resetPass"> Forgot Password? </Link>
-
+        
       </div>
     );
   }

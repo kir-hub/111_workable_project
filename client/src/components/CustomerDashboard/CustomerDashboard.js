@@ -70,8 +70,8 @@ class CustomerDashboard extends React.Component {
     }
    
     render() {
-        const {error, haveMore, display} = this.props;
-        const {customerFilter} = this.props;
+        const {error, haveMore} = this.props;
+        const {customerFilter, display} = this.props;
         
         return (
             <div className={styles.mainContainer}>
@@ -96,7 +96,8 @@ class CustomerDashboard extends React.Component {
                     </div>
                     <Link to='/Events' className={  styles.filter }>
                         Events 
-                        <span> {display ? 'O' : ''}  </span>
+                        <span> {display ? 'O' : ''}  </span> 
+                        
                     </Link>
                 </div>
                 <div className={styles.contestsContainer}>

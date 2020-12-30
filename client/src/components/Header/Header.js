@@ -14,6 +14,7 @@ import Constests from './ulsForHeader/Constests';
 import OurWork from './ulsForHeader/OurWork';
 import NamesForSale from './ulsForHeader/NamesForSale';
 import Blog from './ulsForHeader/blog';
+import Chat from '../Chat/ChatComponents/Chat/Chat'
 
 class Header extends React.Component {
   constructor(props){
@@ -96,6 +97,7 @@ class Header extends React.Component {
             </ul>
           </div>
           <img
+            
             src={`${CONSTANTS.STATIC_IMAGES_PATH}email.png`}
             className={styles.emailIcon}
             alt="email"

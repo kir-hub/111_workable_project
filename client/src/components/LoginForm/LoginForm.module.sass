@@ -5,7 +5,9 @@
   align-items: stretch
   justify-content: center
   padding: 10px 20px 30px
-
+  @media(max-width: 1100px )
+    width: 80%
+ 
   .submitContainer
     align-self: stretch
     min-width: 260px
@@ -109,22 +111,30 @@
     margin-top: 20px
     margin-bottom: 28px
 
+
+
 .button
   display: flex
   flex-direction: row
   justify-content: center
   align-items: center
+  
   color: #28D2D1
   border: 2px solid #28D2D1
   border-radius: 5px
   height: 60px
   cursor: pointer
   background-color: white
-  min-width: 300px
-  width: 300px
+  // min-width: 300px
+  width: 270px
   margin: 40px 0
-  margin-left: 140px
+  margin-left: 160px
   text-decoration: none 
+  @media(max-width: 1000px )
+    width: 60% 
+    margin-left: 40px
+    
+    
 
   &__link
     display: flex

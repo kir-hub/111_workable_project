@@ -1,4 +1,4 @@
-import { months } from 'moment'
+
 import React, { useState, useContext, createContext } from 'react'
 import { useEffect } from 'react'
 import Timer from '../../components/TimerComponents/TimerHooks'
@@ -22,18 +22,18 @@ export default function Events() {
     const [description, setDescription] = useState('')
     const fullDate =  month+ ' '+ day + ' ' + year + ' ' + sec +':'+ minute +':'+ hour//sec +':'+ min +':'+ hour +' '+ day +' '+ month +' '+ year
     
-    const timerHook = <Timer dataDate={fullDate} title={title} description={description}/>
+    const timerHook = <Timer dataDate={fullDate} title={title} />
 
     
     
     const dateHandler = ()=>{
         setDate(fullDate)
+
         const newTimersArr = [...timers, timerHook]
         newTimersArr.sort(compareTimers);             
-        //console.log(newTimersArr);
+        
         setTimers(newTimersArr )   
-        // console.log(timerHook.props.dataDate);
-        //localStorage.setItem('arr', )
+        
         
     }
     
@@ -50,7 +50,7 @@ export default function Events() {
         <div className={styles.mainContainer}>
             
             <h1>Create new reminder for your event</h1>          
-            <input onChange={e => setDay(e.target.value)} value={day} placeholder='day' className={styles.day}/>
+            <input onChange={e => setDay(e.target.value)} value={day} placeholder='day' className={styles.day} />
             <input onChange={e => setMonth(e.target.value)} value={month} placeholder='month' className={styles.month}/>
             <input onChange={e => setYear(e.target.value)} value={year} placeholder='year'/>
             <h2> Exact time</h2>
@@ -59,11 +59,12 @@ export default function Events() {
             <input onChange={e => setHour(e.target.value)} value={hour} placeholder='sec'/>
             <input onChange={e => setTitle(e.target.value)} value={title} placeholder='title'/>
             <input onChange={e => setDescription(e.target.value)} value={description} placeholder='description'/>           
-            <button onClick={dateHandler}> Add event</button>
+            <button onClick={dateHandler} disabled={!day, !month, !year}> Add event</button>
             
             <hr/>
+            <h2 >Live upcoming checks</h2>
                 <ul className={styles.timersList}>
-
+                
                  { mapedArray }         {  /*айтемс это типа остальные таймеры по идее */}
                  
                 </ul>

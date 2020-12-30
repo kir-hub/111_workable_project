@@ -15,7 +15,7 @@ const log = bunyan.createLogger({
             pattern: '.YYYY-MM-DD-hh-mm',
             period: '1d',
     
-            path:  './err-logs.json',
+            path:  './Logs/err-logs.json',
             level: 'error'
         },
         {
@@ -23,7 +23,7 @@ const log = bunyan.createLogger({
             pattern: '.YYYY-MM-DD-hh-mm',
             period: '1d',
 
-            path:  './debug-logs.json',
+            path:  './Logs/debug-logs.json',
             level: 'debug'
         },
         {
