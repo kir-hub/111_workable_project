@@ -15,7 +15,7 @@ export default function SingleButton(props) {
  
     return (
         <div >
-            <h2  onClick={() => setToggle(!toggle)}> {yesOrNo} </h2>
+            
             <p>{innerText} </p>
             <p> {Recommended}</p>
         </div>

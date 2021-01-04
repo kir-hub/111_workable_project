@@ -40,7 +40,7 @@ const log = bunyan.createLogger({
             pattern: '.YYYY-MM-DD-hh-mm',
             period: '1d',
 
-            path:  './fatal-logs.json',
+            path:  './Logs/fatal-logs.json',
             level: 'fatal'
         }
     ]

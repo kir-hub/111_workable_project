@@ -5,7 +5,13 @@
     },
     {
         "header": "How is Squadhelp Different?",
-        "body": ""
+        "body": "Since 2011, we have been committed to disrupting the traditional agency model. Our platform offers much more than a typical crowdsourcing experience. From Machine Learning to Audience Testing to Comprehensive Trademark Validation, you receive best-in-class support for your branding projects.",
+        "title": "Breadth:",
+        "text": " Our Contest-Based Crowdsourcing approach allows you to receive an unmatched breadth of name ideas from dozens of unique, creative minds while working with the world's largest branding community.",
+        "title1": "Quality and Collaboration:",
+        "text1": " Using an advanced Quality Scoring Algorithm, we ensure that you receive more ideas from our top-quality creatives, and we use Gamification best practices to encourage high-quality brainstorming and two-way communication throughout your contest.",
+        "title2": "We don’t stop at ideation:",
+        "text2": " Choose your name with confidence through our high-end validation services. Poll your target demographics to get unbiased feedback on your favorite names, and receive Trademark Risk and Linguistics Analysis Reports developed by a Licensed Trademark Attorney."
     },
     {
         "header": "Will you help me validate my name?",
@@ -25,7 +31,10 @@
     },
     {
         "header": "Can I see any examples?",
-        "body": ""
+        "body": "Our creatives have submitted more than 5 Million names and thousands of logos on our platform. Here are some examples of Names, Taglines, and Logos that were submitted in recent contests.",
+        "link1": "- Name Examples",
+        "link2": "- Tagline Examples",
+        "link3": "- Logo Examples"
     },
     {
         "header": "Where can I read about feedback from other customers?",

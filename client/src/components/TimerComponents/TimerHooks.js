@@ -11,7 +11,7 @@ const Timer =(props)=>{
     const [timerHours, setTimerHours] = useState('00')
     const [timerMinutes, setTimerMinutes] = useState('00')
     const [timerSeconds, setTimerSeconds] = useState('00')
-    const [isOver, setTimerOver] = useState(true)
+    const [isOver, setTimerOver] = useState(false)
   
 
     let interval = useRef();
@@ -46,10 +46,7 @@ const Timer =(props)=>{
                 setTimerDays(days);
                 setTimerHours(hours);
                 setTimerMinutes(minutes);
-                setTimerSeconds(seconds);
-               
-                
-                
+                setTimerSeconds(seconds); 
                 // setProgress(oldValue => {
                 //     let  newValue = oldValue +1
                 //     if(newValue == timeLeft){
@@ -61,8 +58,6 @@ const Timer =(props)=>{
                      
                 // })
             }
-             
-            
         }, 1000)
     }
 
@@ -77,7 +72,7 @@ const Timer =(props)=>{
 
     return (
         <div className={styles.parentCont}>
-            <div className={styles.displayNone}> <CustomerDashboard display={isOver}/></div>
+            <div className={styles.displayNone}> </div>
             
             <div className={styles.timerContainer}>
                 {/* <Bar value={progress} max={bone }/> */}

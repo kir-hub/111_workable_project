@@ -9,7 +9,7 @@ import useLocalStorage from './localStorageFunction/useLocalStorage'
 
 export default function Events() {
 
-
+    //const [timers, setTimers] = useLocalStorage('key', [])
     const [timers, setTimers] = useState([])
     const [date, setDate] = useState('')
     const [sec, setSec] = useState('00')
@@ -19,8 +19,8 @@ export default function Events() {
     const [month, setMonth] = useState('')
     const [year, setYear] = useState('')
     const [title, setTitle] = useState('')
-    const [description, setDescription] = useState('')
-    const fullDate =  month+ ' '+ day + ' ' + year + ' ' + sec +':'+ minute +':'+ hour//sec +':'+ min +':'+ hour +' '+ day +' '+ month +' '+ year
+    // const [description, setDescription] = useState('')
+    const fullDate =  month+ ' '+ day + ' ' + year + ' ' + sec +':'+ minute +':'+ hour
     
     const timerHook = <Timer dataDate={fullDate} title={title} />
 
@@ -58,14 +58,14 @@ export default function Events() {
             <input onChange={e => setMin(e.target.value)} value={minute} placeholder='minutes'/>
             <input onChange={e => setHour(e.target.value)} value={hour} placeholder='sec'/>
             <input onChange={e => setTitle(e.target.value)} value={title} placeholder='title'/>
-            <input onChange={e => setDescription(e.target.value)} value={description} placeholder='description'/>           
+            {/* <input onChange={e => setDescription(e.target.value)} value={description} placeholder='description'/>            */}
             <button onClick={dateHandler} disabled={!day, !month, !year}> Add event</button>
             
             <hr/>
             <h2 >Live upcoming checks</h2>
                 <ul className={styles.timersList}>
                 
-                 { mapedArray }         {  /*айтемс это типа остальные таймеры по идее */}
+                 { mapedArray }         
                  
                 </ul>
 
