@@ -18,9 +18,7 @@ import Error from '../Error/Error';
 
 class ResetPasswordForm extends React.Component{
 
-  componentWillUnmount () {
-    this.props.authClear();
-  }
+  
 
    clicked = (values) => {
           this.props.resetPasswordRequest({ 
@@ -46,7 +44,7 @@ class ResetPasswordForm extends React.Component{
       return (
           <div className={ styles.signUpFormContainer}>
         
-
+        <h2> RESET PASSWORD</h2>
       <form onSubmit={ handleSubmit(this.clicked) } >
       <div className={ styles.row }>
           <Field
@@ -91,12 +89,12 @@ class ResetPasswordForm extends React.Component{
 const mapDispatchToProps = (dispatch) => (
   {
       resetPasswordRequest: (data) => dispatch(authActionResetPass(data)),
-      authClear: () => dispatch(clearAuth()),
+      // authClear: () => dispatch(clearAuth()),
   }
 );
 
 export default connect(/*mapStateToProps,*/null,  mapDispatchToProps)(reduxForm({
-  form: 'login',
+  form: 'login',//'resetPassword'
   validate: customValidator(Schems.ResetPassSchem),
 })(ResetPasswordForm));
 

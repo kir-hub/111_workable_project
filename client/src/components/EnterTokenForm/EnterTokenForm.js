@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { authActionLogin, executePasswordAction } from '../../actions/actionCreator';
 import { Redirect } from 'react-router-dom';
-import styles from '../LoginForm/LoginForm.module.sass';
+import styles from './EnterTokenForm.module.sass';
 
 import { Field, reduxForm } from 'redux-form';
 import FormInput from '../FormInput/FormInput';
@@ -13,9 +13,7 @@ import Error from '../../components/Error/Error';
 
 class EnterTokenForm extends React.Component{
 
-  componentWillUnmount () {
-    this.props.authClear();
-  }
+  
 
   clicked = (values) => {
     this.props.executePasswordRequest(values);
@@ -34,6 +32,7 @@ class EnterTokenForm extends React.Component{
     };
  
     return (
+      
       <div className={ styles.loginForm }>
         
 
@@ -54,6 +53,8 @@ class EnterTokenForm extends React.Component{
         
 
       </div>
+
+
     );
   }
 }
@@ -61,11 +62,11 @@ class EnterTokenForm extends React.Component{
 const mapDispatchToProps = (dispatch) => (
   {
     executePasswordRequest: (data) => dispatch(executePasswordAction(data)),
-    //authClear: () => dispatch(clearAuth()),
+    
   }
 );
 
 export default connect(null, mapDispatchToProps)(reduxForm({
-  form: 'login',
-  //validate: customValidator(Schems.LoginSchem),
+  form: 'login',//'enterToken'
+  
 })(EnterTokenForm)); 

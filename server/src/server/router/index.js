@@ -14,19 +14,7 @@ const queries = require('../controllers/queries/userQueries');
 router.put(
   "/setNewPassword",
   userController.verifyChangedPassword
-  //queries.setPassword
-  //userController.setPassword
-  // function(req, res, next){
-  //   passUpdate(
-  //     {password: req.body.password},
-  //     {returning: true, where: {email: req.params./*body*/email}}
-  //   )
-  //   .then(function([rowsUpdated, [updatedPass]]){
-  //     res.json(updatedPass)
-  //   })
-  //   .catch(next)
-  // },
-  
+
 );
 
 router.post(

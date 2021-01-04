@@ -53,14 +53,14 @@ module.exports.resetPassword = async (req, res, next) =>{  //firstAction\\
   
 
 // }
-//вообще ничего не понятно
+
 module.exports.setPassword = async (req, res, next) =>{  
   try{ 
-  const decoded = jwt.decode(/*req.token*/req.token, {complete: true});
+  const decoded = jwt.decode(req.token, {complete: true});
   const getPassFromPayload = JSON.parse(decoded.payload)
-    console.log(decoded.header);
-    console.log(decoded.payload)
-  const userToUpdate = await bd.Users.findUser({email: getPassFromPayload.email}) // а где взять конкретно этот эмейл
+    // console.log(decoded.header);
+    // console.log(decoded.payload)
+  const userToUpdate = await bd.Users.findUser({email: getPassFromPayload.email}) 
   if (!userToUpdate){
     throw new NotFound('user with this data didn`t exist');
     //const newPassword = getPassFromPayload.password
@@ -90,7 +90,7 @@ module.exports.verifyChangedPassword = async (req, res, next) =>{
         if(userWhoNeedToChangePassword){
           function setPassword (){
             try{ 
-              const decoded = jwt.decode(/*req.token*/token, {complete: true});
+              const decoded = jwt.decode(req.token, {complete: true});
               const getPassFromPayload = JSON.parse(decoded.payload)
                 console.log(decoded.header);
                 console.log(decoded.payload)
@@ -183,15 +183,7 @@ module.exports.login = async (req, res, next) => {
     res.send/*debug*/({ token: accessToken });
     logger.info('login')
     
-    // const link = 'http://localhost:3000/EnterToken'
-    // const message = {
-      
-    //   to: req.body.email,
-    //   subject: accessToken ,
-    //   html: `<h2>copy token and follow <a href='${link}'>link </a></h2> `,
-    // }
-    // mailer(message)
-
+    
   } catch (err) {
     logger.error('errorERR')
     next(err);

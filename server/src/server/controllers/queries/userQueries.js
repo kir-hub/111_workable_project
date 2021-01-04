@@ -22,6 +22,46 @@ module.exports.findUser = async (predicate, transaction) => {
   }
 };
 
+
+
+
+
+
+
+
+module.exports.userCreation = async (data) => {
+  const newUser = await bd.Users.create(data);
+  if ( !newUser) {
+    throw new ServerError('server error on user creation');
+  } else {
+    return newUser.get({ plain: true });
+  }
+};
+
+module.exports.passwordCompare = async (pass1, pass2) => {
+  const passwordCompare = await bcrypt.compare(pass1, pass2);
+  if ( !passwordCompare) {
+    throw new NotFound('Wrong password');
+    
+  }
+};
+
+module.exports.changePassword = async (data) =>{
+  const [number, updatedSmth] = await bd.Users.update({
+      where: {email: req.body.email},
+      returning: true,
+      plain: true
+    })
+    
+//   const newPassword = await bd.Users.update(data, {where: {
+//     email: req.body.email
+//   }
+// }
+// )
+  
+
+}
+
 module.exports.setPassword = async (req, res, next) =>{  
   try{ 
   const decoded = jwt.decode(/*req.token*/req.token, {complete: true});
@@ -47,10 +87,6 @@ module.exports.setPassword = async (req, res, next) =>{
     next(e)
   }
 }
-
-
-
-
 // module.exports.userResetPass = async (data, userId) =>{
 //   const [updatedPass, updatedRows] = await bd.Users.update(data, { //переделать
 //     where: {id: userId}, returning: true
@@ -66,35 +102,4 @@ module.exports.setPassword = async (req, res, next) =>{
 //   // })
 // }
 
-module.exports.changePassword = async (data) =>{
-  const [number, updatedSmth] = await bd.Users.update({
-      where: {email: req.body.email},
-      returning: true,
-      plain: true
-    })
-    
-//   const newPassword = await bd.Users.update(data, {where: {
-//     email: req.body.email
-//   }
-// }
-// )
-  
 
-}
-
-module.exports.userCreation = async (data) => {
-  const newUser = await bd.Users.create(data);
-  if ( !newUser) {
-    throw new ServerError('server error on user creation');
-  } else {
-    return newUser.get({ plain: true });
-  }
-};
-
-module.exports.passwordCompare = async (pass1, pass2) => {
-  const passwordCompare = await bcrypt.compare(pass1, pass2);
-  if ( !passwordCompare) {
-    throw new NotFound('Wrong password');
-    
-  }
-};

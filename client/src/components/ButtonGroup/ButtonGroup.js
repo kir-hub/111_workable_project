@@ -48,7 +48,7 @@ const toggleThree = ()=>{
 
               
             <div onClick={toggleOne} className={activeOne ? styles.activeCont : styles.mainCont}>
-            <h1> No </h1>
+            <h1> Yes </h1>
             <SingleButton innerText='The Domain should exactly match the name'/>
             </div>
             <div onClick={toggleTwo} className={activeTwo ? styles.activeCont : styles.mainCont}> 
@@ -57,7 +57,7 @@ const toggleThree = ()=>{
             </div>
               
             <div onClick={toggleThree} className={activeThree ? styles.activeCont : styles.mainCont}>
-            <h1> Yes </h1>
+            <h1> No </h1>
             <SingleButton innerText='I am only looking for a name, not a Domain'/>
             </div>
         </div>

@@ -1,7 +1,7 @@
 import React from 'react';
 import EnterTokenForm from '../../components/EnterTokenForm/EnterTokenForm';
 import Logo from '../../components/Logo';
-import styles from '../LoginPage/LoginPage.module.sass';
+import styles from './EnterToken.module.sass';
 //import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { clearErrorSignUpAndLogin } from '../../actions/actionCreator';
