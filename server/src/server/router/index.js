@@ -67,7 +67,7 @@ router.get(
   contestController.getContestById,
 );
 
-router.post(
+router.get(
   '/getAllContests',
   checkToken.checkToken,
   basicMiddlewares.onlyForCreative,
@@ -77,7 +77,7 @@ router.post(
 router.post(
   '/getUser',
   checkToken.checkAuth,
-  //checkToken.checkToken
+  
  
   
 );

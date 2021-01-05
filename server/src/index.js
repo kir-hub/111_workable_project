@@ -18,25 +18,9 @@ logger.info('error')//
 logger.debug('deb')
 logger.error('err')//
 
-// app.all('*', (req, res, next) => {
-//   logger.info('incoming request', {method: req.method});
-
-//   logger.debug('incoming request verbose', {
-//     headers: req.headers,
-//     query: req.query,
-//     body: req.body
-//   });
-//   return next()
-//})  //ну и что дальше с этим делать
 
 
-// const morgan = require('morgan'); //____________________________________
-// const accessLogStream = fs.createWriteStream('./access.log', {flags: 'a'}); //выгрузка логов в файл с расширением log
-// app.use(morgan({stream: accessLogStream}));
 
-// app.use(morgan('dev', {
-//   skip: function (req, res) { return res.statusCode < 400 }
-// }))
 
 
 app.use(cors());
@@ -56,3 +40,24 @@ controller.createConnection(server);
 
 
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// const morgan = require('morgan'); //____________________________________
+// const accessLogStream = fs.createWriteStream('./access.log', {flags: 'a'}); //выгрузка логов в файл с расширением log
+// app.use(morgan({stream: accessLogStream}));
+
+// app.use(morgan('dev', {
+//   skip: function (req, res) { return res.statusCode < 400 }
+// }))

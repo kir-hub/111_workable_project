@@ -27,11 +27,7 @@ const log = bunyan.createLogger({
             level: 'debug'
         },
         {
-            // type: 'rotating-file',
-            // pattern: '.YYYY-MM-DD-hh-mm',
-            // period: '1d',
-
-            // path:  './warn-logs.json',
+            
             stream: process.stdout ,
             level: 'warn'
         },

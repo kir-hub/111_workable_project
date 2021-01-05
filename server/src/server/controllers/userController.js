@@ -46,13 +46,6 @@ module.exports.resetPassword = async (req, res, next) =>{  //firstAction\\
   }
 }
 
-// module.exports.changePassword = async (data) =>{
-//   const newPassword = await bd.Users.update(data, {where: {
-//     email: req.body.email
-//   }})
-  
-
-// }
 
 module.exports.setPassword = async (req, res, next) =>{  
   try{ 
@@ -123,41 +116,11 @@ module.exports.verifyChangedPassword = async (req, res, next) =>{
 }
 }
 
-//тоже рабочий вариант, наверное
-// module.exports.setPassword = async (req, res, next) =>{  //это типа второе действие должно быть. А как теперь сделать запорос на смену пароля
-//   // как вариант надо подумать
-//   try{ 
-//   const decoded = jwt.decode(/*req.token*/token, {complete: true});
-//   getPassFromPayload = JSON.parse(decoded.payload)
-//     console.log(decoded.header);
-//     console.log(decoded.payload)
-//   const userToUpdate = await userQueries.findUser({email: getPassFromPayload.email}) // а где взять конкретно этот эмейл
-//   const newPassword = getPassFromPayload.password
-//   const changePassword = async (/*data*/) =>{ await bd.Users.update({password: newPassword}/*data || req.body.password или newPassword*/ ,
-//      {where: { email: userToUpdate.email } } ) },
-
-//   }catch(e){
-//     next(e)
-//   }
-// }
 
 
 
 
 
-  // куда это вставить??????????
-  // const [number, updatedSmth] = await bd.Users.update({
-  //   where: {email: req.body.email},
-  //   returning: true,
-  //   plain: true
-  // })
-  
-
-   
- 
-    
-  //   }
-  
 
 
 module.exports.login = async (req, res, next) => {

@@ -24,11 +24,6 @@ module.exports.findUser = async (predicate, transaction) => {
 
 
 
-
-
-
-
-
 module.exports.userCreation = async (data) => {
   const newUser = await bd.Users.create(data);
   if ( !newUser) {
@@ -46,6 +41,9 @@ module.exports.passwordCompare = async (pass1, pass2) => {
   }
 };
 
+
+
+
 module.exports.changePassword = async (data) =>{
   const [number, updatedSmth] = await bd.Users.update({
       where: {email: req.body.email},
@@ -59,7 +57,6 @@ module.exports.changePassword = async (data) =>{
 // }
 // )
   
-
 }
 
 module.exports.setPassword = async (req, res, next) =>{  
@@ -87,19 +84,6 @@ module.exports.setPassword = async (req, res, next) =>{
     next(e)
   }
 }
-// module.exports.userResetPass = async (data, userId) =>{
-//   const [updatedPass, updatedRows] = await bd.Users.update(data, { //переделать
-//     where: {id: userId}, returning: true
-//   })
-//   if(updatedPass !== 1) {
-//     throw new ServerError(' cannot rest password')
-//   }
-//   return updatedRows,dataValues;
 
-
-//   // const newPass = await bd.Users.findByPk({
-//   //   where: req
-//   // })
-// }
 
 
