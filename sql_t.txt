@@ -1,0 +1,28 @@
+1
+select "Users"."role", count(*)
+from "Users"
+group by "Users"."role" having count(*) > 1;
+
+2
+select "Users"."firstName", "Users"."role", "Contests"."prize",
+case
+    when "Contests"."createdAt" between date('25-12-2020') and  date('14-01-2021') -- тут ложна быть дата--age(timestamp '25-12-2019', timestamp '14-01-2020')
+    then  ("Contests"."prize") * 0.1  -- = interval (2020.25.12 2020.14.01)
+end as cashback
+from "Contests"
+join "Users" on "Contests"."userId" = "Users".id
+group by "Users"."firstName", "Users"."role", "Contests"."createdAt", "Contests"."prize",  cashback;
+
+3
+select "Users"."role", "Users"."firstName", "Users"."lastName", "Users"."rating", ("Users"."balance" + 10) as balance
+
+
+       from "Users"
+
+where "Users"."role" = 'creator'
+order by "Users"."rating"
+limit 3;
+
+4
+no sql
+ db.Messages.aggregate([{$match: {"value": "паровоз"}},{$count: "count"}])
