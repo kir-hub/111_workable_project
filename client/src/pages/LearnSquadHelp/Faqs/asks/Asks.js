@@ -39,10 +39,10 @@ export default function Asks(props) {
                 <Link className={styles.body} to='google.com'><p>{paragraph.link1}</p></Link>
                 </div>
                 <div>
-                <Link className={styles.body}><p>{paragraph.link2}</p></Link>
+                <Link className={styles.body} to='google.com'><p>{paragraph.link2}</p></Link>
                 </div>
                 <div>
-                <Link className={styles.body}><p>{paragraph.link3}</p></Link>
+                <Link className={styles.body} to='google.com'><p>{paragraph.link3}</p></Link>
                 </div>
                 </div>
 

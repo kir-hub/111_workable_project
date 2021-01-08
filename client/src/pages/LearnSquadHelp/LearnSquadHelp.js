@@ -1,4 +1,4 @@
-import React from 'react'
+import React,{useEffect} from 'react'
 import { Link } from 'react-router-dom'
 import Header from '../../components/Header/Header';
 
@@ -9,6 +9,7 @@ import HowWorkFaq from './Faqs/howWorkFaq/HowWorkFaq';
 import SpinnerLoader from '../../components/Spinner/Spinner';
 import styles from './LearnSquadHelp.module.sass'
 import GetInTouch from './Faqs/GetInTouch/GetInTouTouch';
+import {connect} from 'react-redux';
 
 
 
@@ -16,6 +17,7 @@ const LearnSquadHelp = (props) => {
 
     const {isFetching} = props;
 
+    
 
     
 
@@ -23,6 +25,7 @@ const LearnSquadHelp = (props) => {
         <>
             <Header/>
             {isFetching ? <SpinnerLoader/> : (<>
+            
             <div className={styles.bodyCont}>
                 <div className={styles.videoCont}>
                     <span className={styles.videoSpan}> 
@@ -52,4 +55,10 @@ const LearnSquadHelp = (props) => {
     )
 }
 
-export default LearnSquadHelp;
+
+const mapStateToProps = (state) => {
+    const {isFetching} = state.userStore;
+    return {isFetching};
+};
+
+export default connect(mapStateToProps, null)(LearnSquadHelp);

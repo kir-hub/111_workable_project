@@ -9,6 +9,7 @@ import { clearErrorSignUpAndLogin } from '../../actions/actionCreator';
 import CONSTANTS from '../../constants';
 
 
+
 import Question from '../../components/Question/Question';
  
 
@@ -21,6 +22,7 @@ const RegistrationPage = (props) => {
  
   return (
     <div className={ styles.signUpPage }>
+      
       <div className={ styles.signUpContainer }>
         <div className={ styles.headerSignUpPage }>
           <Logo src={ `${ CONSTANTS.STATIC_IMAGES_PATH }logo.png` }/>

@@ -60,14 +60,14 @@ router.post(
   contestController.getCustomersContests,
 );
 
-router.get(
+router.post(
   '/getContestById',
   checkToken.checkToken,
   basicMiddlewares.canGetContest,
   contestController.getContestById,
 );
 
-router.get(
+router.post(
   '/getAllContests',
   checkToken.checkToken,
   basicMiddlewares.onlyForCreative,

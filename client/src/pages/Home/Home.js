@@ -52,7 +52,7 @@ const Home = (props) => {
                         <SlideBar images={carouselConstants.mainSliderImages}
                                   carouselType={carouselConstants.MAIN_SLIDER}/>
                     </div>
-                    <Link className={styles.button} to="/LearnSquadHelp"> LearnSquadHelp </Link>
+                    <Link className={styles.button} to="/LearnSquadHelp"> How it works </Link>
                     <div className={styles.container__description}>
                         <h2 className={styles.blueUnderline}>Why Squadhelp?</h2>
                         <div className={styles.cardContainer}>

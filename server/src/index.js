@@ -13,10 +13,10 @@ const path  = require('path')
 const PORT = process.env.PORT || 9632;
 const app = express();
 
-const logger = require('./server/logger/log')
-logger.info('error')//
-logger.debug('deb')
-logger.error('err')//
+// const logger = require('./server/logger/log')
+// logger.info('error')//
+// logger.debug('deb')
+// logger.error('err')//
 
 
 

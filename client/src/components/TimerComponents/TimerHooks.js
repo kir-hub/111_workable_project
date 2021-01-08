@@ -12,11 +12,15 @@ const Timer =(props)=>{
     const [timerMinutes, setTimerMinutes] = useState('00')
     const [timerSeconds, setTimerSeconds] = useState('00')
     const [isOver, setTimerOver] = useState(false)
+
+    const deleteHandler = ()=>{
+        return deleteTimer(props.key)
+    }
   
 
     let interval = useRef();
 
-    const {dataDate, title} = props;
+    const {dataDate, title, deleteTimer} = props;
 
     const startsTimer = () =>{
     
@@ -72,6 +76,7 @@ const Timer =(props)=>{
 
     return (
         <div className={styles.parentCont}>
+            <h1 onClick={deleteHandler}> x</h1>
             <div className={styles.displayNone}> </div>
             
             <div className={styles.timerContainer}>

@@ -45,7 +45,7 @@ class App extends Component {
                     <Route exact path='/resetPass' component={(ResetPasswordPage)}/>
                     <Route exact path='/EnterToken' component={(EnterTokenForm)}/> 
                     <Route exact path='/Events' component={PrivateHoc(Events)}/>
-                    <Route exact path='/LearnSquadHelp' component={(LearnSquadHelp)}/>
+                    <Route exact path='/LearnSquadHelp' component={LearnSquadHelp}/>
 )
                     <Route exact path='/' component={Home}/>
                     <Route exact path='/login' component={OnlyNotAuthorizedUserHoc(LoginPage)}/>
