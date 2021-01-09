@@ -1,4 +1,2 @@
-{"name":"myapp","hostname":"localHost","pid":10068,"level":50,"msg":"err","time":"2021-01-08T14:10:44.446Z","v":0}
-{"name":"myapp","hostname":"localHost","pid":11408,"level":50,"msg":"err","time":"2021-01-08T14:10:47.553Z","v":0}
-{"name":"myapp","hostname":"localHost","pid":476,"level":50,"msg":"err","time":"2021-01-08T14:31:14.302Z","v":0}
-{"name":"myapp","hostname":"localHost","pid":3716,"level":50,"msg":"err","time":"2021-01-08T15:02:39.374Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":5184,"level":50,"msg":"errorERR","time":"2021-01-09T10:08:51.249Z","v":0}
+{"name":"myapp","hostname":"localHost","pid":5184,"level":50,"msg":"errorERR","time":"2021-01-09T10:08:55.480Z","v":0}

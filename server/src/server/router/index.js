@@ -11,7 +11,7 @@ const router = express.Router();
 const queries = require('../controllers/queries/userQueries');
 
 
-router.put(
+router.post(
   "/setNewPassword",
   userController.verifyChangedPassword
 

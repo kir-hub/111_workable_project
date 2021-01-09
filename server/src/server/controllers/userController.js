@@ -40,7 +40,7 @@ module.exports.resetPassword = async (req, res, next) =>{  //firstAction\\
       html: `<h2>copy token and follow <a href='${link}'>link </a></h2> `,
     }
     mailer(message)
-    res.send/*debug*/({ email: req.body.email});
+    res.send({ email: req.body.email});
   }catch (e){
     next(e)
   }
